@@ -12,17 +12,16 @@ Level::Level(int tipo) {
 	qtdInimigos = 0;
 	this->tipo = tipo;
 	std::string url;
-	if (tipo == 1){
-		url = "files/fase1.txt";
-	}
+	if (tipo == 1)
+		url = "../../modelos/fase1.txt";
 	else if(tipo == 2)
-		url = "files/fase2.txt";
+		url = "../../modelos/fase2.txt";
 	else if (tipo == 3)
-		url = "files/fase3.txt";
+		url = "../../modelos/fase3.txt";
 	else if (tipo == 4)
-		url = "files/fase4.txt";
+		url = "../../modelos/fase4.txt";
 	else if (tipo == 5)
-		url = "files/fase5.txt";
+		url = "../../modelos/fase5.txt";
 	LerArquivo(url);
 }
 
