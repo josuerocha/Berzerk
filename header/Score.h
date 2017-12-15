@@ -1,6 +1,11 @@
 #pragma once
+
+//CUSTOM INCLUDES
 #include "FuncoesExtra.h"
+
+//STANDARD INCLUDES
 #include <string>
+#include <cstring>
 #include <iostream>
 #include <sstream>
 #include <iomanip>

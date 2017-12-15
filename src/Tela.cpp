@@ -477,11 +477,11 @@ void Tela::DisplayEnemies() {
 void Tela::ChecaColisaoInimigosParedes() {
 	bool podeMover = true;
 	for(int i=0; i<fase.vetorInimigos.size(); i++) {
-		if ((inimigo->getIsActive())) {
-		Coord nova = inimigo->FollowPlayer(&player.Centro());
-		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, inimigo->d.largura, inimigo->d.altura);
-		for each(Parede* parede in fase.vetorParede) {
-			BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
+		if ((fase.vetorInimigos[i]->getIsActive())) {
+		Coord nova = fase.vetorInimigos[i]->FollowPlayer(&player.Centro());
+		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, fase.vetorInimigos[i]->d.largura, fase.vetorInimigos[i]->d.altura);
+		for(int i=0; i<fase.vetorParede.size(); i++) {
+			BoundingBox *spriteParede = new BoundingBox(fase.vetorParede[i]->c.x, fase.vetorParede[i]->c.y, fase.vetorParede[i]->d.largura, fase.vetorParede[i]->d.altura);
 			podeMover = !ChecaColisao(spriteInimigo, spriteParede);
 			delete spriteParede;
 			spriteParede = NULL;
