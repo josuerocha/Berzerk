@@ -1,6 +1,6 @@
 # Berzerk remake
 
-Remake of the game Berzerk as a project for the Computer Graphics class.  [Detailed report in Portuguese].(https://github.com/josuerocha/Berzerk/blob/master/report.pdf)
+Remake of the game Berzerk as a project for the Computer Graphics class.  [Detailed report in Portuguese](https://github.com/josuerocha/Berzerk/blob/master/report.pdf).
 
 # To do:
 
