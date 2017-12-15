@@ -1,5 +1,5 @@
 #include "FuncoesExtra.h"
-
+using namespace std;
 
 FuncoesExtra::FuncoesExtra()
 {
@@ -73,3 +73,10 @@ void FuncoesExtra::DrawCircle(Coord c, float r, int segmentos)
 	}
 	glEnd();
 }
+
+string FuncoesExtra::to_string(int num){
+    std::ostringstream ss;
+    ss << num;
+    return ss.str();
+}
+

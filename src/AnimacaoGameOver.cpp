@@ -25,8 +25,8 @@ AnimacaoGameOver::~AnimacaoGameOver()
 void AnimacaoGameOver::Display() {
 	glBegin(GL_POLYGON);
 	glColor3f(cor.r, cor.g, cor.b);
-	for each(Coord* ponto in vetorPontos) {
-		glVertex2f(ponto->x * efeitoCont, ponto->y * efeitoCont);
+	for(int i=0;vetorPontos.size();i++) {
+		glVertex2f(vetorPontos[i]->x * efeitoCont, vetorPontos[i]->y * efeitoCont);
 	}
 	glEnd();
 	if (efeitoCont < 1400) { efeitoCont++; }

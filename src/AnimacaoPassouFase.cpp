@@ -1,5 +1,5 @@
 #include "AnimacaoPassouFase.h"
-
+using namespace std;
 
 AnimacaoPassouFase::AnimacaoPassouFase(int numFase)
 {
@@ -32,8 +32,8 @@ void AnimacaoPassouFase::Reset() {
 void AnimacaoPassouFase::Display(int numFase) {
 	glBegin(GL_POLYGON);
 	glColor3f(cor.r, cor.g, cor.b);
-	for each(Coord* ponto in vetorPontos) {
-		glVertex2f(ponto->x * animacaoCont, ponto->y * animacaoCont);
+	for(int i=0; vetorPontos.size(); i++) {
+		glVertex2f(vetorPontos[i]->x * animacaoCont, vetorPontos[i]->y * animacaoCont);
 	}
 	if (animacaoCont < 1400) { animacaoCont++; }
 	else { isActive = false; }
@@ -41,9 +41,9 @@ void AnimacaoPassouFase::Display(int numFase) {
 	FuncoesExtra::DesenhaTexto("PARABENS, VOCE PASSOU DE FASE!!!", Coord(400, 300), Cor(1, 1, 1));
 	FuncoesExtra::DesenhaTexto("FASE", Coord(400, 250), Cor(1, 1, 1));
 
-	std::string numFaseString = std::to_string(numFase);
+	std::string numFaseString = FuncoesExtra::to_string(numFase);
 	char numFaseChar[30];
-	strcpy(numFaseChar, numFaseString.c_str());
+	std::strcpy(numFaseChar, numFaseString.c_str());
 
 	;
 	if (numFase == 2) {

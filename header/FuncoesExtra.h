@@ -1,7 +1,16 @@
 #pragma once
+
+//CUSTOM INCLUDES
 #include "Estruturas.h"
-#include <math.h>
+
+//GL INCLUDES
 #include <GL/glut.h>
+
+//STANDARD INCLUDES
+#include <math.h>
+#include <sstream>
+#include <string>
+#include <iostream>
 
 class FuncoesExtra
 {
@@ -13,5 +22,6 @@ public:
 	static void DesenhaInstrucoesBloco(char * string, Coord c);
 	static Coord CalculaVetorUnitario(Coord i, Coord f);
 	static void DrawCircle(Coord c, float r, int segmentos);
+	static std::string to_string(int num);
 };
 

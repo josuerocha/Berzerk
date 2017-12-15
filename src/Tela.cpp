@@ -99,19 +99,19 @@ void Tela::Display() {
 			player.setC(fase.getPlayerPosition());
 			passouDeFase = false;
 
-			for each(Projectile* p in vetorProjeteisAmigos) {
-				delete(p);
-				p = NULL;
+			for(int i=0; i<vetorProjeteisAmigos.size(); i++) {
+				delete(vetorProjeteisAmigos[i]);
+				vetorProjeteisAmigos[i] = NULL;
 			}
 
-			for each(Projectile* p in vetorProjeteisInimigos) {
-				delete(p);
-				p = NULL;
+			for(int i=0; i<vetorProjeteisInimigos.size(); i++) {
+				delete(vetorProjeteisInimigos[i]);
+				vetorProjeteisInimigos[i] = NULL;
 			}
 
-			for each(EfeitosVisuais* e in vetorEfeitosVisuais) {
-				delete(e);
-				e = NULL;
+			for(int i=0; vetorEfeitosVisuais.size(); i++) {
+				delete(vetorEfeitosVisuais[i]);
+				vetorEfeitosVisuais[i] = NULL;
 			}
 
 			efeitoPassouFase->Reset();
@@ -176,17 +176,17 @@ void Tela::setWindowValues() {
 
 void Tela::DisplayProjectiles() {
 
-	for each(Projectile* p in vetorProjeteisAmigos) {
-		if (p->getIsActive()) {
-			p->Display();
+	for(int i=0; i<vetorProjeteisAmigos.size(); i++) {
+		if (vetorProjeteisAmigos[i]->getIsActive()) {
+			vetorProjeteisAmigos[i]->Display();
 		}
 	}
 }
 
 void Tela::DisplayEnemyProjectiles() {
-	for each(Projectile* p in vetorProjeteisInimigos) {
-		if (p->getIsActive()) {
-			p->Display();
+	for(int i=0; i<vetorProjeteisInimigos.size(); i++) {
+		if (vetorProjeteisInimigos[i]->getIsActive()) {
+			vetorProjeteisInimigos[i]->Display();
 		}
 	}
 }
@@ -364,25 +364,25 @@ void Tela::MoveFriendlyProjectiles() {
 		}
 	}
 	shoot = 0;
-	for each(Projectile* p in vetorProjeteisAmigos) {
-		if (p->isActive) {
-			p->c = Coord(p->c.x + (p->vetor.x * p->velocity),p->c.y + (p->vetor.y * p->velocity));
+	for(int i=0; i<vetorProjeteisAmigos.size(); i++) {
+		if (vetorProjeteisAmigos[i]->isActive) {
+			vetorProjeteisAmigos[i]->c = Coord(vetorProjeteisAmigos[i]->c.x + (vetorProjeteisAmigos[i]->vetor.x * vetorProjeteisAmigos[i]->velocity),vetorProjeteisAmigos[i]->c.y + (vetorProjeteisAmigos[i]->vetor.y * vetorProjeteisAmigos[i]->velocity));
 		}
 		//Destruir projeteis distantes
-		if (p->isActive == 1 && (p->c.x > janela.width || p->c.x < 0 || p->c.y > janela.height || p->c.y < 0)) {
-			p->Deactivate();
+		if (vetorProjeteisAmigos[i]->isActive == 1 && (vetorProjeteisAmigos[i]->c.x > janela.width || vetorProjeteisAmigos[i]->c.x < 0 || vetorProjeteisAmigos[i]->c.y > janela.height || vetorProjeteisAmigos[i]->c.y < 0)) {
+			vetorProjeteisAmigos[i]->Deactivate();
 		}
 	}
 }
 
 void Tela::MoveEnemyProjectiles() {
-	for each(Projectile* projetil in vetorProjeteisInimigos) {
-		if (projetil->isActive) {
-			projetil->c = Coord(projetil->c.x + (projetil->vetor.x * projetil->velocity),projetil->c.y + (projetil->vetor.y * projetil->velocity));
+	for(int i=0; i<vetorProjeteisInimigos.size(); i++) {
+		if (vetorProjeteisInimigos[i]->isActive) {
+			vetorProjeteisInimigos[i]->c = Coord(vetorProjeteisInimigos[i]->c.x + (vetorProjeteisInimigos[i]->vetor.x * vetorProjeteisInimigos[i]->velocity),vetorProjeteisInimigos[i]->c.y + (vetorProjeteisInimigos[i]->vetor.y * vetorProjeteisInimigos[i]->velocity));
 		}
 		//Destruir projeteis distantes
-		if (projetil->isActive == 1 && (projetil->c.x > janela.width || projetil->c.x < 0 || projetil->c.y > janela.height || projetil->c.y < 0)) {
-			projetil->Deactivate();
+		if (vetorProjeteisInimigos[i]->isActive == 1 && (vetorProjeteisInimigos[i]->c.x > janela.width || vetorProjeteisInimigos[i]->c.x < 0 || vetorProjeteisInimigos[i]->c.y > janela.height || vetorProjeteisInimigos[i]->c.y < 0)) {
+			vetorProjeteisInimigos[i]->Deactivate();
 		}
 	}
 }
@@ -468,15 +468,15 @@ bool Tela::ChecaColisao(BoundingBox *quadrado1, BoundingBox *quadrado2) {
 }
 
 void Tela::DisplayEnemies() {
-	for each(Enemy* inimigo in fase.vetorInimigos) {
-		inimigo->Display();
+	for(int i=0; i<fase.vetorInimigos.size(); i++) {
+		fase.vetorInimigos[i]->Display();
 	}
 }
 
 
 void Tela::ChecaColisaoInimigosParedes() {
 	bool podeMover = true;
-	for each(Enemy* inimigo in fase.vetorInimigos) {
+	for(int i=0; i<fase.vetorInimigos.size(); i++) {
 		if ((inimigo->getIsActive())) {
 		Coord nova = inimigo->FollowPlayer(&player.Centro());
 		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, inimigo->d.largura, inimigo->d.altura);

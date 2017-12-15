@@ -3,6 +3,7 @@
 
 #pragma once
 #include <iostream>
+#include <stdio.h>
 #include <GL/glut.h>
 #include <math.h>
 #include <string>

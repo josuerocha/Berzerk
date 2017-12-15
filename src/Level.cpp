@@ -174,8 +174,8 @@ void Level::DecQtdInimigos()
 
 
 void Level::DesenhaFase() {
-	for each(Parede* parede in vetorParede) {
-		parede->Display();
+	for(int i=0; i<vetorParede.size(); i++) {
+		vetorParede[i]->Display();
 	}
 	
 }

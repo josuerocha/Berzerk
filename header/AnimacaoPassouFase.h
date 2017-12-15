@@ -1,5 +1,6 @@
 #pragma once
 #include "EfeitosVisuais.h"
+#include <cstring>
 #include <string>
 
 class AnimacaoPassouFase : public EfeitosVisuais
