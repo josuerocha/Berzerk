@@ -1,5 +1,5 @@
 #include "FuncoesExtra.h"
-using namespace std;
+
 
 FuncoesExtra::FuncoesExtra()
 {
@@ -74,9 +74,8 @@ void FuncoesExtra::DrawCircle(Coord c, float r, int segmentos)
 	glEnd();
 }
 
-string FuncoesExtra::to_string(int num){
-    std::ostringstream ss;
-    ss << num;
-    return ss.str();
+template < typename T > std::string to_string( const T& n ){
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
 }
-

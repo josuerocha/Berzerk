@@ -1,5 +1,4 @@
 #include "Score.h"
-using namespace std;
 
 Score::Score()
 {
@@ -41,7 +40,7 @@ void Score::IncHits(int incHits) {
 
 void Score::Display(int vidas) {
 	
-	std::string pontuacaoString = FuncoesExtra::to_string(pontuacao);
+	std::string pontuacaoString = std::to_string(pontuacao);
 	char pontuacaoVetor[30];
 	strcpy(pontuacaoVetor, pontuacaoString.c_str());
 	FuncoesExtra::DesenhaTexto("SCORE: ",Coord(800,15),Cor(0,0,1));

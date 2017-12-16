@@ -13,15 +13,15 @@ Level::Level(int tipo) {
 	this->tipo = tipo;
 	std::string url;
 	if (tipo == 1)
-		url = "../../modelos/fase1.txt";
+		url = "models/level1.txt";
 	else if(tipo == 2)
-		url = "../../modelos/fase2.txt";
+		url = "models/level2.txt";
 	else if (tipo == 3)
-		url = "../../modelos/fase3.txt";
+		url = "models/level3.txt";
 	else if (tipo == 4)
-		url = "../../modelos/fase4.txt";
+		url = "models/level4.txt";
 	else if (tipo == 5)
-		url = "../../modelos/fase5.txt";
+		url = "models/level5.txt";
 	LerArquivo(url);
 }
 
@@ -174,8 +174,8 @@ void Level::DecQtdInimigos()
 
 
 void Level::DesenhaFase() {
-	for(int i=0; i<vetorParede.size(); i++) {
-		vetorParede[i]->Display();
+	for(Parede* parede : vetorParede) {
+		parede->Display();
 	}
 	
 }

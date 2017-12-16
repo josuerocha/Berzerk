@@ -22,8 +22,8 @@ AnimacaoMorte::~AnimacaoMorte()
 void AnimacaoMorte::Display() {
 	glBegin(GL_POLYGON);
 	glColor3f(cor.r, cor.g, cor.b);
-	for(int i=0; i<vetorPontos.size(); i++) {
-		glVertex2f(vetorPontos[i]->x * morteCont, vetorPontos[i]->y * morteCont);
+	for(Coord* ponto : vetorPontos) {
+		glVertex2f(ponto->x * morteCont, ponto->y * morteCont);
 	}
 	if (morteCont < 1400) { morteCont++; }
 	else { isActive = false; }

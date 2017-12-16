@@ -99,19 +99,19 @@ void Tela::Display() {
 			player.setC(fase.getPlayerPosition());
 			passouDeFase = false;
 
-			for(int i=0; i<vetorProjeteisAmigos.size(); i++) {
-				delete(vetorProjeteisAmigos[i]);
-				vetorProjeteisAmigos[i] = NULL;
+			for(Projectile* p : vetorProjeteisAmigos) {
+				delete(p);
+				p = NULL;
 			}
 
-			for(int i=0; i<vetorProjeteisInimigos.size(); i++) {
-				delete(vetorProjeteisInimigos[i]);
-				vetorProjeteisInimigos[i] = NULL;
+			for(Projectile* p : vetorProjeteisInimigos) {
+				delete(p);
+				p = NULL;
 			}
 
-			for(int i=0; vetorEfeitosVisuais.size(); i++) {
-				delete(vetorEfeitosVisuais[i]);
-				vetorEfeitosVisuais[i] = NULL;
+			for(EfeitosVisuais* e : vetorEfeitosVisuais) {
+				delete(e);
+				e = NULL;
 			}
 
 			efeitoPassouFase->Reset();
@@ -176,17 +176,17 @@ void Tela::setWindowValues() {
 
 void Tela::DisplayProjectiles() {
 
-	for(int i=0; i<vetorProjeteisAmigos.size(); i++) {
-		if (vetorProjeteisAmigos[i]->getIsActive()) {
-			vetorProjeteisAmigos[i]->Display();
+	for(Projectile* p : vetorProjeteisAmigos) {
+		if (p->getIsActive()) {
+			p->Display();
 		}
 	}
 }
 
 void Tela::DisplayEnemyProjectiles() {
-	for(int i=0; i<vetorProjeteisInimigos.size(); i++) {
-		if (vetorProjeteisInimigos[i]->getIsActive()) {
-			vetorProjeteisInimigos[i]->Display();
+	for(Projectile* p : vetorProjeteisInimigos) {
+		if (p->getIsActive()) {
+			p->Display();
 		}
 	}
 }
@@ -364,25 +364,25 @@ void Tela::MoveFriendlyProjectiles() {
 		}
 	}
 	shoot = 0;
-	for(int i=0; i<vetorProjeteisAmigos.size(); i++) {
-		if (vetorProjeteisAmigos[i]->isActive) {
-			vetorProjeteisAmigos[i]->c = Coord(vetorProjeteisAmigos[i]->c.x + (vetorProjeteisAmigos[i]->vetor.x * vetorProjeteisAmigos[i]->velocity),vetorProjeteisAmigos[i]->c.y + (vetorProjeteisAmigos[i]->vetor.y * vetorProjeteisAmigos[i]->velocity));
+	for(Projectile* p : vetorProjeteisAmigos) {
+		if (p->isActive) {
+			p->c = Coord(p->c.x + (p->vetor.x * p->velocity),p->c.y + (p->vetor.y * p->velocity));
 		}
 		//Destruir projeteis distantes
-		if (vetorProjeteisAmigos[i]->isActive == 1 && (vetorProjeteisAmigos[i]->c.x > janela.width || vetorProjeteisAmigos[i]->c.x < 0 || vetorProjeteisAmigos[i]->c.y > janela.height || vetorProjeteisAmigos[i]->c.y < 0)) {
-			vetorProjeteisAmigos[i]->Deactivate();
+		if (p->isActive == 1 && (p->c.x > janela.width || p->c.x < 0 || p->c.y > janela.height || p->c.y < 0)) {
+			p->Deactivate();
 		}
 	}
 }
 
 void Tela::MoveEnemyProjectiles() {
-	for(int i=0; i<vetorProjeteisInimigos.size(); i++) {
-		if (vetorProjeteisInimigos[i]->isActive) {
-			vetorProjeteisInimigos[i]->c = Coord(vetorProjeteisInimigos[i]->c.x + (vetorProjeteisInimigos[i]->vetor.x * vetorProjeteisInimigos[i]->velocity),vetorProjeteisInimigos[i]->c.y + (vetorProjeteisInimigos[i]->vetor.y * vetorProjeteisInimigos[i]->velocity));
+	for(Projectile* projetil : vetorProjeteisInimigos) {
+		if (projetil->isActive) {
+			projetil->c = Coord(projetil->c.x + (projetil->vetor.x * projetil->velocity),projetil->c.y + (projetil->vetor.y * projetil->velocity));
 		}
 		//Destruir projeteis distantes
-		if (vetorProjeteisInimigos[i]->isActive == 1 && (vetorProjeteisInimigos[i]->c.x > janela.width || vetorProjeteisInimigos[i]->c.x < 0 || vetorProjeteisInimigos[i]->c.y > janela.height || vetorProjeteisInimigos[i]->c.y < 0)) {
-			vetorProjeteisInimigos[i]->Deactivate();
+		if (projetil->isActive == 1 && (projetil->c.x > janela.width || projetil->c.x < 0 || projetil->c.y > janela.height || projetil->c.y < 0)) {
+			projetil->Deactivate();
 		}
 	}
 }
@@ -468,20 +468,21 @@ bool Tela::ChecaColisao(BoundingBox *quadrado1, BoundingBox *quadrado2) {
 }
 
 void Tela::DisplayEnemies() {
-	for(int i=0; i<fase.vetorInimigos.size(); i++) {
-		fase.vetorInimigos[i]->Display();
+	for(Enemy* inimigo : fase.vetorInimigos) {
+		inimigo->Display();
 	}
 }
 
 
 void Tela::ChecaColisaoInimigosParedes() {
 	bool podeMover = true;
-	for(int i=0; i<fase.vetorInimigos.size(); i++) {
-		if ((fase.vetorInimigos[i]->getIsActive())) {
-		Coord nova = fase.vetorInimigos[i]->FollowPlayer(&player.Centro());
-		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, fase.vetorInimigos[i]->d.largura, fase.vetorInimigos[i]->d.altura);
-		for(int i=0; i<fase.vetorParede.size(); i++) {
-			BoundingBox *spriteParede = new BoundingBox(fase.vetorParede[i]->c.x, fase.vetorParede[i]->c.y, fase.vetorParede[i]->d.largura, fase.vetorParede[i]->d.altura);
+	for(Enemy* inimigo : fase.vetorInimigos) {
+		if ((inimigo->getIsActive())) {
+		Coord playerCenter = player.Centro();
+		Coord nova = inimigo->FollowPlayer(&playerCenter);
+		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, inimigo->d.largura, inimigo->d.altura);
+		for(Parede* parede : fase.vetorParede) {
+			BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
 			podeMover = !ChecaColisao(spriteInimigo, spriteParede);
 			delete spriteParede;
 			spriteParede = NULL;
@@ -522,7 +523,7 @@ void Tela::ChecarColisoes() {
 void Tela::ChecarColisoesProjeteisInimigos() {
 
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x , player.c.y , player.d.largura, player.d.altura);
-	for each(Projectile* projetilInimigo in vetorProjeteisInimigos) {
+	for(Projectile* projetilInimigo : vetorProjeteisInimigos) {
 		if(projetilInimigo->getIsActive()){
 			BoundingBox *spriteInimigo = new BoundingBox(projetilInimigo->c.x, projetilInimigo->c.y, projetilInimigo->d.largura, projetilInimigo->d.altura);
 			if (ChecaColisao(spriteJogador, spriteInimigo)) {
@@ -538,10 +539,10 @@ void Tela::ChecarColisoesProjeteisInimigos() {
 }
 
 void Tela::ChecarColisoesProjeteisAmigos() {
-	for each(Projectile* projetilAmigo in vetorProjeteisAmigos) {
+	for(Projectile* projetilAmigo : vetorProjeteisAmigos) {
 		if (projetilAmigo->getIsActive()){
 			BoundingBox *spriteProjetil = new BoundingBox(projetilAmigo->c.x, projetilAmigo->c.y, projetilAmigo->d.largura, projetilAmigo->d.altura);
-			for each(Enemy* inimigo in fase.vetorInimigos) {
+			for(Enemy* inimigo : fase.vetorInimigos) {
 				BoundingBox *spriteInimigo = new BoundingBox(inimigo->c.x, inimigo->c.y, inimigo->d.largura, inimigo->d.altura);
 				if (projetilAmigo->getIsActive()){
 					if (inimigo->getIsActive()) {
@@ -565,7 +566,7 @@ void Tela::ChecarColisoesProjeteisAmigos() {
 
 void Tela::ChecarColisoesInimigos() {
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x, player.c.y, player.d.largura, player.d.altura);
-	for each(Enemy* enemy in fase.vetorInimigos) {
+	for(Enemy* enemy : fase.vetorInimigos) {
 		if (enemy->getIsActive()) {
 			BoundingBox *spriteInimigo = new BoundingBox(enemy->c.x, enemy->c.y, enemy->d.largura, enemy->d.altura);
 			if (ChecaColisao(spriteJogador, spriteInimigo)) {
@@ -586,7 +587,7 @@ void Tela::ChecarColisoesInimigos() {
 void Tela::EnemiesShoot() {
 	contadorTempo++;
 	if (contadorTempo % 10 == 0) {
-		for each(Enemy* enemy in fase.vetorInimigos) {
+		for(Enemy* enemy : fase.vetorInimigos) {
 		if (enemy->getIsActive()){
 			if (rand() % 10 < 1) {
 				for (int i = 0; i < MAX_PROJECTILES; i++) {
@@ -606,17 +607,17 @@ void Tela::EnemiesShoot() {
 }
 
 void Tela::DisplayVisualEfects() {
-	for each(EfeitosVisuais* efeito in vetorEfeitosVisuais) {
+	for(EfeitosVisuais* efeito : vetorEfeitosVisuais) {
 		if(efeito->isActive)
 		efeito->Display();
 	}
 }
 
 void Tela::ChecaColisaoProjeteisParedes() {
-	for each(Projectile* projetilAmigo in vetorProjeteisAmigos) {
+	for(Projectile* projetilAmigo : vetorProjeteisAmigos) {
 		if (projetilAmigo->getIsActive()) {
 			BoundingBox *spriteProjetil = new BoundingBox(projetilAmigo->c.x, projetilAmigo->c.y, projetilAmigo->d.largura, projetilAmigo->d.altura);
-			for each (Parede* parede in fase.vetorParede){
+			for (Parede* parede : fase.vetorParede){
 				BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
 				bool colisao = ChecaColisao(spriteProjetil, spriteParede);
 				if (colisao == true) {
@@ -631,10 +632,10 @@ void Tela::ChecaColisaoProjeteisParedes() {
 		}
 	}
 
-	for each(Projectile* projetilInimigo in vetorProjeteisInimigos) {
+	for(Projectile* projetilInimigo : vetorProjeteisInimigos) {
 		if (projetilInimigo->getIsActive()) {
 			BoundingBox *spriteProjetil = new BoundingBox(projetilInimigo->c.x, projetilInimigo->c.y, projetilInimigo->d.largura, projetilInimigo->d.altura);
-			for each (Parede* parede in fase.vetorParede) {
+			for (Parede* parede : fase.vetorParede) {
 				BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
 				bool colisao = ChecaColisao(spriteProjetil, spriteParede);
 				if (colisao == true) {
@@ -651,14 +652,14 @@ void Tela::ChecaColisaoProjeteisParedes() {
 }
 
 void Tela::DisplayColetaveis() {
-	for each(Coletavel* coletavel in fase.vetorColetaveis) {
+	for(Coletavel* coletavel : fase.vetorColetaveis) {
 		coletavel->Display();
 	}
 }
 
 void Tela::ChecarColisoesColetaveis() {
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x, player.c.y, player.d.largura, player.d.altura);
-	for each(Coletavel* coletavel in fase.vetorColetaveis) {
+	for(Coletavel* coletavel : fase.vetorColetaveis) {
 		if (coletavel->active) {
 			BoundingBox *spriteColetavel = new BoundingBox(coletavel->c.x, coletavel->c.y, coletavel->d.largura, coletavel->d.altura);
 			if (ChecaColisao(spriteJogador, spriteColetavel)) {
