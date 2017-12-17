@@ -74,8 +74,7 @@ void FuncoesExtra::DrawCircle(Coord c, float r, int segmentos)
 	glEnd();
 }
 
-template < typename T > 
-std::string FuncoesExtra::to_string( T& n ){
+std::string FuncoesExtra::to_string( int n ){
         std::ostringstream stm ;
         stm << n ;
         return stm.str() ;
