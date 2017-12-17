@@ -41,7 +41,7 @@ void AnimacaoPassouFase::Display(int numFase) {
 	FuncoesExtra::DesenhaTexto("PARABENS, VOCE PASSOU DE FASE!!!", Coord(400, 300), Cor(1, 1, 1));
 	FuncoesExtra::DesenhaTexto("FASE", Coord(400, 250), Cor(1, 1, 1));
 
-	std::string numFaseString = std::to_string(numFase);
+	std::string numFaseString = FuncoesExtra::to_string(numFase);
 	char numFaseChar[30];
 	strcpy(numFaseChar, numFaseString.c_str());
 

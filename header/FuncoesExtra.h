@@ -22,6 +22,6 @@ public:
 	static void DesenhaInstrucoesBloco(char * string, Coord c);
 	static Coord CalculaVetorUnitario(Coord i, Coord f);
 	static void DrawCircle(Coord c, float r, int segmentos);
-	static std::string to_string(int num);
+	static std::string to_string( typename T& n );
 };
 
