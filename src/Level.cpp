@@ -3,9 +3,14 @@
 #include <GL/glut.h>
 #include <math.h>
 #include <string>
+using namespace std;
 
 Level::Level()
 {
+	this->contParedes = 0;
+	this->coluna = 0;
+	this->tipo = -1;
+	this->qtdInimigos = 0;
 }
 
 Level::Level(int tipo) {
@@ -22,7 +27,9 @@ Level::Level(int tipo) {
 		url = "models/level4.txt";
 	else if (tipo == 5)
 		url = "models/level5.txt";
+
 	LerArquivo(url);
+	cout<<"LEVEL mapped" << endl;
 }
 
 Level::~Level()
@@ -96,7 +103,7 @@ void Level::MapeiaFase() {
 
 				glVertex2i(xpontoParedeAtualizado1, ypontoParedeAtualizado1);
 
-				// Especifica que a cor corrente é azul
+				// Especifica que a cor corrente ï¿½ azul
 				glColor3f(vetCores[3], vetCores[4], vetCores[5]);
 				glVertex2i(xpontoParedeAtualizado2, ypontoParedeAtualizado1);
 				glVertex2i(xpontoParedeAtualizado2, ypontoParedeAtualizado2);

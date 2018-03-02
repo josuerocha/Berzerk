@@ -1,6 +1,7 @@
 #include "Tela.h"
 #include <iostream>
 using namespace std;
+
 Tela::Tela()
 {	
 	animacaoInicial = AnimacaoInicial();
@@ -9,11 +10,17 @@ Tela::Tela()
 	efeitoMorte = new AnimacaoMorte();
 	efeitoGameOver = new AnimacaoGameOver();
 	menu = new MainMenu();
+
 	fullscreen = false;
 	animacaoMorte = false;
 	passouDeFase = false;
 	animacaoFinalFlag = false;
 
+	this->faseAtual = 1;
+	this->shoot = false;
+	this->isPlaying = true;
+
+	cout<<"LEFT CONSTRUCTOR" << endl;
 }
 
 void Tela::Logica() {
@@ -42,7 +49,7 @@ void Tela::AlteraTamanhoJanela(GLsizei w, GLsizei h)
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 
-	// Estabelece a janela de seleção (left, right, bottom, top)
+	// Estabelece a janela de seleï¿½ï¿½o (left, right, bottom, top)
 	if (w <= h){
 		gluOrtho2D(0.0f, 800.0f, 0.0f, 600.0f*h / w);
 		janela.height = 600 * h / w;
@@ -276,7 +283,7 @@ void Tela::keyboardDown(unsigned char key, int x, int y) {
 			menu->opcaoMenuButton = false;
 			}
 		break;
-		//opções
+		//opï¿½ï¿½es
 	case 'O':
 	case 'o':	
 			if (menu->emMenu) {
@@ -453,17 +460,17 @@ bool Tela::ChecaColisao(BoundingBox *quadrado1, BoundingBox *quadrado2) {
 	 cima2 = quadrado2->y;
 	 baixo2 = quadrado2->y + quadrado2->altura;
 	if (esquerda1 > direita2){
-		return false; // (não colisão)
+		return false; // (nï¿½o colisï¿½o)
 	}
 	if (direita1 < esquerda2){
-		return false; // (não colisão)
+		return false; // (nï¿½o colisï¿½o)
 	}
 	if (cima1 > baixo2) {
-		return false; // (não colisão)
+		return false; // (nï¿½o colisï¿½o)
 	}
 	if (baixo1 < cima2){
-		return false; // (não colisão)
-	}			  /*do contrário (COLISÃO)*/
+		return false; // (nï¿½o colisï¿½o)
+	}			  /*do contrï¿½rio (COLISï¿½O)*/
 	return true;
 }
 

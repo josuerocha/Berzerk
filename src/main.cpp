@@ -6,7 +6,7 @@
 #include <math.h>
 #include "Tela.h"
 using namespace std;
-//--------------- Definições -----------------
+//--------------- Definiï¿½ï¿½es -----------------
 Tela tela;
 // Teclado
 #define UP 'w'
@@ -14,13 +14,13 @@ Tela tela;
 #define LEFT 'a'
 #define RIGHT 'd'
 
-// Definições de jogo
+// Definiï¿½ï¿½es de jogo
 #define PROJECTILE_VELOCITY 10
 #define MAX_PROJECTILES 30
 #define MAX_ENEMIES_PER_SCREEN 10
 
 
-// -------- Assinaturas de Funções -----------
+// -------- Assinaturas de Funï¿½ï¿½es -----------
 void Timer(int value);
 void Display();
 void AlteraTamanhoJanela(GLsizei w, GLsizei h);
@@ -31,7 +31,7 @@ void mouseMotion(int x, int y);
 void keyboardSpecialDown(int key, int x, int y);
 void keyboardSpecialUp(int key, int x, int y);
 
-// --------------- Funções --------------------
+// --------------- Funï¿½ï¿½es --------------------
 
 
 
