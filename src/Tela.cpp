@@ -24,7 +24,7 @@ Tela::Tela()
 }
 
 void Tela::Logica() {
-	if (fase.getQtdInimigos() <= 0 & player.getHP() >0) {
+	if ((fase.getQtdInimigos() <= 0) && (player.getHP() > 0)) {
 		passouDeFase = true;
 	}
 	else {
@@ -191,7 +191,7 @@ void Tela::DisplayProjectiles() {
 }
 
 void Tela::DisplayEnemyProjectiles() {
-	for(Projectile* p : vetorProjeteisInimigos) {
+	for(auto& p : vetorProjeteisInimigos) {
 		if (p->getIsActive()) {
 			p->Display();
 		}
@@ -372,7 +372,9 @@ void Tela::MoveFriendlyProjectiles() {
 	}
 	shoot = 0;
 	for(Projectile* p : vetorProjeteisAmigos) {
+		cout << "OPA OPAaaaa" << endl;
 		if (p->isActive) {
+			cout << "OPA OPA" << endl;
 			p->c = Coord(p->c.x + (p->vetor.x * p->velocity),p->c.y + (p->vetor.y * p->velocity));
 		}
 		//Destruir projeteis distantes

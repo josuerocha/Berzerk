@@ -13,6 +13,7 @@ public:
 	float velocity;
 	int alcance, dano;
 	bool isActive;
+
 	Projectile();
 	Projectile(Coord r, Coord vect, Dimensao d, int alcanc, int dano, float velocity, bool isActive,Cor cor);
 	Coord getC();

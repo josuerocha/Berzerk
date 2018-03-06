@@ -23,8 +23,8 @@ Projectile::Projectile(Coord c, Coord vetor, Dimensao d, int alcance, int dano, 
 }
 
 
-Projectile::~Projectile()
-{
+Projectile::~Projectile(){
+	this->isActive = true;
 }
 
 
