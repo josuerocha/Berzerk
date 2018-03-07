@@ -55,9 +55,9 @@ public:
 	Score score;
 
     //Personagens
-	std::vector <Projectile*> vetorProjeteisAmigos;
-	std::vector <Projectile*> vetorProjeteisInimigos;
-	std::vector <EfeitosVisuais*> vetorEfeitosVisuais;
+	std::vector <Projectile*> friendlyProjectiles;
+	std::vector <Projectile*> enemyProjectiles;
+	std::vector <EfeitosVisuais*> visualEffects;
 	Player player;
 
 	//Animacoes
@@ -70,7 +70,7 @@ public:
 	Level fase;
 	MainMenu* menu;
 
-	glutWindow janela;
+	glutWindow window;
 
 	Tela();
 	~Tela();

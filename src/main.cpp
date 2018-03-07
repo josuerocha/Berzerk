@@ -44,8 +44,8 @@ int main(int argc, char **argv) {
 	// initialize and run program
 	glutInit(&argc, argv);  // GLUT initialization
 	glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH);
-	glutInitWindowSize(tela.janela.width, tela.janela.height); // set window size
-	glutCreateWindow(tela.janela.title); // create Window
+	glutInitWindowSize(tela.window.width, tela.window.height); // set window size
+	glutCreateWindow(tela.window.title); // create Window
 	glutInitWindowPosition(500,500);
 	glutDisplayFunc(Display); // register Display Function
 	glutIdleFunc(Display); // register Idle Function
