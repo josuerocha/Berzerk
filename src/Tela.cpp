@@ -191,7 +191,7 @@ void Tela::DisplayProjectiles() {
 }
 
 void Tela::DisplayEnemyProjectiles() {
-	for(auto& p : vetorProjeteisInimigos) {
+	for(auto p : vetorProjeteisInimigos) {
 		if (p->getIsActive()) {
 			p->Display();
 		}
