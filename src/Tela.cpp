@@ -191,9 +191,9 @@ void Tela::DisplayProjectiles() {
 }
 
 void Tela::DisplayEnemyProjectiles() {
-	for(Projectile* p : enemyProjectiles) {
-		if (p->getIsActive()) {
-			p->Display();
+	for( Projectile & p : enemyProjectiles) {
+		if (p.getIsActive()) {
+			p.Display();
 		}
 	}
 }
@@ -371,15 +371,15 @@ void Tela::MoveFriendlyProjectiles() {
 		}
 	}
 	shoot = 0;
-	for(Projectile* p : friendlyProjectiles) {
+	for(Projectile & p : friendlyProjectiles) {
 		cout << "OPA OPAaaaa" << endl;
-		if (p->isActive) {
+		if (p.isActive) {
 			cout << "OPA OPA" << endl;
-			p->c = Coord(p->c.x + (p->vetor.x * p->velocity),p->c.y + (p->vetor.y * p->velocity));
+			p.c = Coord(p.c.x + (p.vetor.x * p.velocity),p.c.y + (p.vetor.y * p.velocity));
 		}
 		//Destruir projeteis distantes
-		if (p->isActive == 1 && (p->c.x > window.width || p->c.x < 0 || p->c.y > window.height || p->c.y < 0)) {
-			p->Deactivate();
+		if (p.isActive == 1 && (p.c.x > window.width || p.c.x < 0 || p.c.y > window.height || p.c.y < 0)) {
+			p.Deactivate();
 		}
 	}
 }
