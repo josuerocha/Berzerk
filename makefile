@@ -1,6 +1,6 @@
 all:
 	@echo "Compilando..."
-	@g++ -Iheader src/*.cpp soil/*.c -o berzerk.bin -lglut -lGL -lGLU -w
+	@g++ -std=c++11 -Iheader src/*.cpp soil/*.c -o berzerk.bin -lglut -lGL -lGLU -w
 
 execute: all
 	@echo "Executando..."

@@ -7,10 +7,10 @@ Projectile::Projectile()
 	alcance = 0;
 	velocity = 0;
 	dano = 0;
-	isActive = false;
+	this->active = true;
 }
 
-Projectile::Projectile(Coord c, Coord vetor, Dimensao d, int alcance, int dano, float velocity, bool isActive,Cor cor)
+Projectile::Projectile(Coord c, Coord vetor, Dimensao d, int alcance, int dano, float velocity, bool active,Cor cor)
 {
 	this->c = c;
 	this->vetor = vetor;
@@ -18,13 +18,12 @@ Projectile::Projectile(Coord c, Coord vetor, Dimensao d, int alcance, int dano, 
 	this->alcance = alcance;
 	this->velocity = velocity;
 	this->dano = dano;
-	this->isActive = isActive;
+	this->active = active;
 	this->cor = cor;
 }
 
 
 Projectile::~Projectile(){
-	this->isActive = true;
 }
 
 
@@ -53,16 +52,16 @@ void Projectile::setVelocity(float velocity) {
 }
 
 
-float Projectile::getIsActive() {
-	return isActive;
+bool Projectile::isActive() {
+	return true;
 }
 
 void Projectile::Activate() {
-	this->isActive = true;
+	this->active = true;
 }
 
 void Projectile::Deactivate() {
-	this->isActive = false;
+	this->active = false;
 }
 
 int Projectile::getDano() {

@@ -1,7 +1,5 @@
 #include "Player.h"
-Player::Player() {
 
-}
 
 Player::Player(Coord c, Dimensao d, int velocidade, float hp, Cor cor,int vidas, int tiros)
 {	this->c = c;

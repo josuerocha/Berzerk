@@ -12,7 +12,7 @@ public:
 	Cor cor;
 	float velocity;
 	int alcance, dano;
-	bool isActive;
+	bool active;
 
 	Projectile();
 	Projectile(Coord r, Coord vect, Dimensao d, int alcanc, int dano, float velocity, bool isActive,Cor cor);
@@ -22,7 +22,7 @@ public:
 	void setVetor(Coord c);
 	float getVelocity();
 	void setVelocity(float velocity);
-	float getIsActive();
+	bool isActive();
 	void Activate();
 	void Deactivate();
 	int getDano();

@@ -2,8 +2,8 @@
 #include <iostream>
 using namespace std;
 
-Tela::Tela()
-{	
+Tela::Tela(){
+
 	animacaoInicial = AnimacaoInicial();
 	fase = Level(1);
 	efeitoPassouFase = new AnimacaoPassouFase(0);
@@ -43,8 +43,8 @@ void Tela::Initialize() {
 	shoot = 0;
 }
 
-void Tela::AlteraTamanhoJanela(GLsizei w, GLsizei h)
-{	if (h == 0) h = 1;
+void Tela::AlteraTamanhoJanela(GLsizei w, GLsizei h){
+	if (h == 0) h = 1;
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -66,6 +66,7 @@ void Tela::Display() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT);
+
 	if (faseAtual >= 4 && passouDeFase) {
 		animacaoFinal.Display();
 		animacaoFinalFlag = true;
@@ -97,6 +98,7 @@ void Tela::Display() {
 		menu->Run();
 		player.Reset();
 	}
+
 	if (passouDeFase && !animacaoMorte && !animacaoInicial.emAnimacao && !menu->emMenuPrincipal) {
 		efeitoPassouFase->Display(faseAtual + 2);
 		if(!efeitoPassouFase->isActive){
@@ -159,6 +161,7 @@ void Tela::Display() {
 			player.ResetVidas();
 		}
 	}
+
 	glutSwapBuffers();
 }
 
@@ -184,16 +187,16 @@ void Tela::setWindowValues() {
 void Tela::DisplayProjectiles() {
 
 	for(Projectile* p : friendlyProjectiles) {
-		if (p->getIsActive()) {
+		if (p->isActive()) {
 			p->Display();
 		}
 	}
 }
 
 void Tela::DisplayEnemyProjectiles() {
-	for( Projectile & p : enemyProjectiles) {
-		if (p.getIsActive()) {
-			p.Display();
+	for( Projectile* p : enemyProjectiles) {
+		if (p->isActive()) {
+			p->Display();
 		}
 	}
 }
@@ -347,8 +350,14 @@ void Tela::MoveFriendlyProjectiles() {
 				score.IncTiros(1);
 				break;
 			}
-			else if(!friendlyProjectiles[i]->isActive){
-				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 10; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->isActive = true; friendlyProjectiles[i]->d = Dimensao(5, 5);
+			else if(!friendlyProjectiles[i]->isActive()){
+				friendlyProjectiles[i]->c = player.c;
+				friendlyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse);
+				friendlyProjectiles[i]->alcance = 900;
+				friendlyProjectiles[i]->dano = 10;
+				friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY;
+				friendlyProjectiles[i]->active = true;
+				friendlyProjectiles[i]->d = Dimensao(5, 5);
 				score.IncTiros(1);
 				break;
 			}
@@ -362,8 +371,8 @@ void Tela::MoveFriendlyProjectiles() {
 				player.decTirosEspeciais();
 				break;
 			}
-			else if (!friendlyProjectiles[i]->isActive) {
-				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 50; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->isActive = true; friendlyProjectiles[i]->d = Dimensao(20, 20);
+			else if (!friendlyProjectiles[i]->isActive()) {
+				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 50; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->active = true; friendlyProjectiles[i]->d = Dimensao(20, 20);
 				score.IncTiros(1);
 				player.decTirosEspeciais();
 				break;
@@ -371,26 +380,24 @@ void Tela::MoveFriendlyProjectiles() {
 		}
 	}
 	shoot = 0;
-	for(Projectile & p : friendlyProjectiles) {
-		cout << "OPA OPAaaaa" << endl;
-		if (p.isActive) {
-			cout << "OPA OPA" << endl;
-			p.c = Coord(p.c.x + (p.vetor.x * p.velocity),p.c.y + (p.vetor.y * p.velocity));
+	for( Projectile*  p : friendlyProjectiles) {
+		if (p->isActive()) {
+			p->c = Coord(p->c.x + (p->vetor.x * p->velocity),p->c.y + (p->vetor.y * p->velocity));
 		}
 		//Destruir projeteis distantes
-		if (p.isActive == 1 && (p.c.x > window.width || p.c.x < 0 || p.c.y > window.height || p.c.y < 0)) {
-			p.Deactivate();
-		}
+		//if (p.isActive() && (p.c.x > window.width || p.c.x < 0 || p.c.y > window.height || p.c.y < 0)) {
+		//	p.Deactivate();
+		//}
 	}
 }
 
 void Tela::MoveEnemyProjectiles() {
 	for(Projectile* projetil : enemyProjectiles) {
-		if (projetil->isActive) {
+		if (projetil->isActive()) {
 			projetil->c = Coord(projetil->c.x + (projetil->vetor.x * projetil->velocity),projetil->c.y + (projetil->vetor.y * projetil->velocity));
 		}
 		//Destruir projeteis distantes
-		if (projetil->isActive == 1 && (projetil->c.x > window.width || projetil->c.x < 0 || projetil->c.y > window.height || projetil->c.y < 0)) {
+		if (projetil->isActive() && (projetil->c.x > window.width || projetil->c.x < 0 || projetil->c.y > window.height || projetil->c.y < 0)) {
 			projetil->Deactivate();
 		}
 	}
@@ -533,7 +540,7 @@ void Tela::ChecarColisoesProjeteisInimigos() {
 
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x , player.c.y , player.d.largura, player.d.altura);
 	for(Projectile* projetilInimigo : enemyProjectiles) {
-		if(projetilInimigo->getIsActive()){
+		if(projetilInimigo->isActive()){
 			BoundingBox *spriteInimigo = new BoundingBox(projetilInimigo->c.x, projetilInimigo->c.y, projetilInimigo->d.largura, projetilInimigo->d.altura);
 			if (ChecaColisao(spriteJogador, spriteInimigo)) {
 				visualEffects.push_back(new Explosao(player.Centro(), "pequena"));
@@ -549,11 +556,11 @@ void Tela::ChecarColisoesProjeteisInimigos() {
 
 void Tela::ChecarColisoesProjeteisAmigos() {
 	for(Projectile* projetilAmigo : friendlyProjectiles) {
-		if (projetilAmigo->getIsActive()){
+		if (projetilAmigo->isActive()){
 			BoundingBox *spriteProjetil = new BoundingBox(projetilAmigo->c.x, projetilAmigo->c.y, projetilAmigo->d.largura, projetilAmigo->d.altura);
 			for(Enemy* inimigo : fase.vetorInimigos) {
 				BoundingBox *spriteInimigo = new BoundingBox(inimigo->c.x, inimigo->c.y, inimigo->d.largura, inimigo->d.altura);
-				if (projetilAmigo->getIsActive()){
+				if (projetilAmigo->isActive()){
 					if (inimigo->getIsActive()) {
 						if (ChecaColisao(spriteProjetil, spriteInimigo)) {
 							projetilAmigo->Deactivate();
@@ -582,8 +589,7 @@ void Tela::ChecarColisoesInimigos() {
 				visualEffects.push_back(new Explosao(player.Centro(), "grande"));
 				player.Kill();
 				enemy->Kill();
-				delete enemy;
-				enemy = NULL;
+				delete (&enemy);
 			}
 			delete spriteInimigo;
 			spriteInimigo = NULL;
@@ -597,15 +603,27 @@ void Tela::EnemiesShoot() {
 	contadorTempo++;
 	if (contadorTempo % 10 == 0) {
 		for(Enemy* enemy : fase.vetorInimigos) {
-		if (enemy->getIsActive()){
+		if (enemy->isActive){
 			if (rand() % 10 < 1) {
 				for (int i = 0; i < MAX_PROJECTILES; i++) {
 					if (enemyProjectiles.size() < MAX_PROJECTILES) {
-						enemyProjectiles.push_back(new Projectile(enemy->Centro(), FuncoesExtra::CalculaVetorUnitario(enemy->Centro(), player.Centro()), Dimensao(5, 5), 900, 10, PROJECTILE_VELOCITY, true, Cor(1, 0, 0)));
+						enemyProjectiles.push_back(new Projectile(enemy->Centro(),
+								FuncoesExtra::CalculaVetorUnitario(enemy->Centro(), player.Centro()),
+								Dimensao(5, 5),
+								900,
+								10,
+								PROJECTILE_VELOCITY,
+								true,
+								Cor(1, 0, 0)));
 						break;
 					}
-					else if (!enemyProjectiles[i]->getIsActive()) {
-						enemyProjectiles[i]->c = enemy->c; enemyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(enemy->Centro(), player.Centro()); enemyProjectiles[i]->alcance = 900; enemyProjectiles[i]->dano = 10; enemyProjectiles[i]->velocity = PROJECTILE_VELOCITY; enemyProjectiles[i]->isActive = true;
+					else if (!enemyProjectiles[i]->isActive()) {
+						enemyProjectiles[i]->c = enemy->c;
+						enemyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(enemy->Centro(), player.Centro());
+						enemyProjectiles[i]->alcance = 900;
+						enemyProjectiles[i]->dano = 10;
+						enemyProjectiles[i]->velocity = PROJECTILE_VELOCITY;
+						enemyProjectiles[i]->active = true;
 						break;
 					}
 				}
@@ -624,7 +642,7 @@ void Tela::DisplayVisualEfects() {
 
 void Tela::ChecaColisaoProjeteisParedes() {
 	for(Projectile* projetilAmigo : friendlyProjectiles) {
-		if (projetilAmigo->getIsActive()) {
+		if (projetilAmigo->isActive()) {
 			BoundingBox *spriteProjetil = new BoundingBox(projetilAmigo->c.x, projetilAmigo->c.y, projetilAmigo->d.largura, projetilAmigo->d.altura);
 			for (Parede* parede : fase.vetorParede){
 				BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
@@ -642,7 +660,7 @@ void Tela::ChecaColisaoProjeteisParedes() {
 	}
 
 	for(Projectile* projetilInimigo : enemyProjectiles) {
-		if (projetilInimigo->getIsActive()) {
+		if (projetilInimigo->isActive()) {
 			BoundingBox *spriteProjetil = new BoundingBox(projetilInimigo->c.x, projetilInimigo->c.y, projetilInimigo->d.largura, projetilInimigo->d.altura);
 			for (Parede* parede : fase.vetorParede) {
 				BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
