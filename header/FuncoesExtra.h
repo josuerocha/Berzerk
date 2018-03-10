@@ -23,5 +23,6 @@ public:
 	static Coord CalculaVetorUnitario(Coord i, Coord f);
 	static void DrawCircle(Coord c, float r, int segmentos);
 	static std::string to_string( int n );
+	static bool checkCollision(BoundingBox *quadrado1, BoundingBox *quadrado2);
 };
 

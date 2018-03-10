@@ -15,7 +15,7 @@ void FuncoesExtra::DesenhaTexto(char *string, Coord c,Cor cor)
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(cor.r, cor.g, cor.b);
 	glPushMatrix();
-	// Posição no universo onde o texto será colocado  
+	// Posiï¿½ï¿½o no universo onde o texto serï¿½ colocado  
 	glRasterPos2f(c.x, c.y);
 	// glRasterPos2f(-win, win - (win*0.08));
 	// Exibe caracter a caracter
@@ -28,7 +28,7 @@ void FuncoesExtra::DesenhaTextoMouse(char *string, Coord mouse, Cor cor)
 {
 	glColor3f(cor.r, cor.g, cor.b);
 	glPushMatrix();
-	// Posição no universo onde o texto será colocado  
+	// Posiï¿½ï¿½o no universo onde o texto serï¿½ colocado  
 	glRasterPos2f(mouse.x, mouse.y);
 	// glRasterPos2f(-win, win - (win*0.08));
 	// Exibe caracter a caracter
@@ -42,7 +42,7 @@ void FuncoesExtra::DesenhaInstrucoesBloco(char *string, Coord c)
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(0.00f, 0.00f, 0.00f);
 	glPushMatrix();
-	// Posição no universo onde o texto será colocado  
+	// Posiï¿½ï¿½o no universo onde o texto serï¿½ colocado  
 	glRasterPos2f(c.x, c.y);
 	// glRasterPos2f(-win, win - (win*0.08));
 	// Exibe caracter a caracter
@@ -78,4 +78,30 @@ std::string FuncoesExtra::to_string( int n ){
         std::ostringstream stm ;
         stm << n ;
         return stm.str() ;
+}
+
+bool FuncoesExtra::checkCollision(BoundingBox *quadrado1, BoundingBox *quadrado2) {
+	int esquerda1, direita1, cima1, baixo1;
+	int esquerda2, direita2, cima2, baixo2;
+	esquerda1 = quadrado1->x;
+	direita1 = quadrado1->x + quadrado1->largura;
+	cima1 = quadrado1->y;
+	baixo1 = quadrado1->y + quadrado1->altura;
+	esquerda2 = quadrado2->x;
+	direita2 = quadrado2->x + quadrado2->largura;
+	 cima2 = quadrado2->y;
+	 baixo2 = quadrado2->y + quadrado2->altura;
+	if (esquerda1 > direita2){
+		return false; // (nï¿½o colisï¿½o)
+	}
+	if (direita1 < esquerda2){
+		return false; // (nï¿½o colisï¿½o)
+	}
+	if (cima1 > baixo2) {
+		return false; // (nï¿½o colisï¿½o)
+	}
+	if (baixo1 < cima2){
+		return false; // (nï¿½o colisï¿½o)
+	}			  /*do contrï¿½rio (COLISï¿½O)*/
+	return true;
 }

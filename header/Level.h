@@ -1,6 +1,7 @@
 #ifndef Level_h
 #define Level_h
 
+// STANDARD INCLUDES
 #include <iostream>
 #include <GL/glut.h>
 #include <math.h>
@@ -8,6 +9,7 @@
 #include <vector>
 #include <fstream>
 
+//CUSTOM INCLUDES
 #include "Enemy.h"
 #include "Estruturas.h"
 #include "Medkit.h"

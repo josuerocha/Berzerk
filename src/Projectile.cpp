@@ -53,7 +53,7 @@ void Projectile::setVelocity(float velocity) {
 
 
 bool Projectile::isActive() {
-	return true;
+	return this->active;
 }
 
 void Projectile::Activate() {

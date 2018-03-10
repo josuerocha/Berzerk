@@ -44,7 +44,7 @@ Level::Level(int tipo) {
 	this->coluna = 0;
 
 	LerArquivo(url);
-	cout<<"LEVEL mapped " << tipo << this->qtdInimigos << endl;
+	cout<<"LEVEL" << tipo << "mapped. Enemy count: " << this->qtdInimigos << endl;
 }
 
 Level::~Level()
@@ -66,11 +66,9 @@ void Level::LerArquivo(std::string url){
 				vetPosicao++;
 			}else {
 				matTela[linha][coluna] = ch - '0';
-				cout << matTela[linha][coluna];
 				coluna++;
 			}
 		} else if (ch == '\n') {
-			cout << "\n";
 			linha++;
 			coluna = 0;
 		}

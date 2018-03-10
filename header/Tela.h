@@ -21,7 +21,7 @@
 #include "AnimacaoGameOver.h"
 #include "AnimacaoFinal.h"
 
-#define PROJECTILE_VELOCITY 10
+#define PROJECTILE_VELOCITY 3
 #define MAX_PROJECTILES 30
 #define MAX_ENEMIES_PER_SCREEN 10
 
@@ -36,8 +36,8 @@
 #define CAPSRIGHT 'D'
 
 /*classe abstrata para a implementacao das Telas*/
-class Tela
-{
+class Tela{
+
 public:
 	//variaveis de controle
 	bool animacaoFinalFlag;
