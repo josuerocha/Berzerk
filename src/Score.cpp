@@ -13,7 +13,7 @@ Score::~Score()
 {
 }
 
-void Score::IncTiros(int incTiros) {
+void Score::incShots(int incTiros) {
 	this->numTiros += incTiros;
 	if (numTiros != 0) { this->accuracy = hits / numTiros; }
 	std::cout << "NUM TIROS " << this->numTiros << "\n";

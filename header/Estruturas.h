@@ -28,11 +28,14 @@ struct BoundingBox {
 };
 
 typedef struct Coord {
-	float x, y;
-	Coord() {};
-	Coord(float x1, float y1) {
-		x = x1;
-		y = y1;
+	double x, y;
+	Coord() {
+		this->x = 0;
+		this->y = 0;
+	};
+	Coord(double x, double y) {
+		this->x = x;
+		this->y = y;
 	}
 } Coord;
 

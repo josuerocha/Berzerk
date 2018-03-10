@@ -51,18 +51,21 @@ void Utilities::DesenhaInstrucoesBloco(char *string, Coord c)
 	glPopMatrix();
 }
 
-Coord Utilities::CalculaVetorUnitario(Coord i, Coord f) {
-	Coord c = Coord(f.x - i.x, f.y - i.y);
-	float modulo = sqrt(pow(c.x, 2) + pow(c.y, 2));
-	c = Coord(c.x / modulo, c.y / modulo);
+Coord Utilities::CalculaVetorUnitario(Coord a, Coord b) {
+
+	Coord c = Coord(b.x - a.x, b.y - a.y);
+	double modulo = sqrt(pow(c.x, 2) + pow(c.y, 2));
+	c.x = c.x / modulo;
+	c.y = c.y / modulo;
 	return c;
+
 }
 
 void Utilities::DrawCircle(Coord c, float r, int segmentos)
 {	
 	glBegin(GL_POLYGON);
-	for (int i = 0; i < segmentos; i++)
-	{
+	for (int i = 0; i < segmentos; i++){
+
 		float teta = 2.0f * 3.1415926f * float(i) / float(segmentos);
 
 		float x = r * cosf(teta);

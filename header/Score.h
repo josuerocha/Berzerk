@@ -17,7 +17,7 @@ class Score
 public:
 	Score();
 	~Score();
-	void IncTiros(int numTiros);
+	void incShots(int numTiros);
 	void DecTiros(int numTiros);
 	void IncPontuacao(int pontuacao);
 	void DecPontuacao(int pontuacao);
