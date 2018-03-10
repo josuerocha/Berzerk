@@ -1,12 +1,8 @@
 #include "Level.h"
-#include <iostream>
-#include <GL/glut.h>
-#include <math.h>
-#include <string>
 using namespace std;
 
-Level::Level()
-{
+Level::Level(){
+
 	this->contParedes = 0;
 	this->coluna = 0;
 	this->tipo = -1;
@@ -14,22 +10,41 @@ Level::Level()
 }
 
 Level::Level(int tipo) {
+	system("pwd");
 	qtdInimigos = 0;
 	this->tipo = tipo;
 	std::string url;
-	if (tipo == 1)
+
+	if (tipo == 1){
 		url = "models/level1.txt";
-	else if(tipo == 2)
+	}else if(tipo == 2){
 		url = "models/level2.txt";
-	else if (tipo == 3)
+	}else if (tipo == 3){
 		url = "models/level3.txt";
-	else if (tipo == 4)
+	}else if (tipo == 4){
 		url = "models/level4.txt";
-	else if (tipo == 5)
+	}else if (tipo == 5){
 		url = "models/level5.txt";
+	}else{
+		cout << "ERROR: invalid option: " << tipo << endl;
+	}
+
+	this->xponto = 100; this->yponto = 300;
+	this->xponto2 = 740; this->yponto2 = 200;
+	this->percorreLinha = 0;
+	this->percorreColuna = 0;
+
+	this->xpontoparedeEsq = 25; this->ypontoparedeEsq = 50;
+	this->ypontoparede2 = 550;
+	this->xpontoparedeDirIn = 1040; this->xpontoparedeDirFin = 740;
+
+	this->qtdLinhas = 26;
+	this->qtdColunas = 50;
+	this->linha = 0;
+	this->coluna = 0;
 
 	LerArquivo(url);
-	cout<<"LEVEL mapped" << endl;
+	cout<<"LEVEL mapped " << tipo << this->qtdInimigos << endl;
 }
 
 Level::~Level()
@@ -37,41 +52,36 @@ Level::~Level()
 }
 
 
-void Level::LerArquivo(std::string url)
-{
+void Level::LerArquivo(std::string url){
 	char ch;
-	FILE *arq;
-
-	int ich;
 	int vetPosicao = 0;
 
-	arq = fopen(url.c_str(), "r");
-	if (arq == NULL) {
-		printf("Erro, nao foi possivel abrir o arquivo\n");
-	}
-	else {
-		while ((ch = fgetc(arq)) != EOF) {
-			if (ch != '\n' && ch != '\t') {
+	std::ifstream is(url);
 
-				if (linha == 26) {
-					vetCores[vetPosicao] = ch - '0';
-					putchar(ch);
-					vetPosicao++;
-				}
-				else {
-					matTela[linha][coluna] = ch - '0';
-					coluna++;
-				}
+	while (is.get(ch)) {
+		if (isDigit(ch)) {
+
+			if (linha == 26) {
+				vetCores[vetPosicao] = ch - '0';
+				vetPosicao++;
+			}else {
+				matTela[linha][coluna] = ch - '0';
+				cout << matTela[linha][coluna];
+				coluna++;
 			}
-			if (ch == '\n') {
-				printf("\n");
-				linha++;
-				coluna = 0;
-			}
+		} else if (ch == '\n') {
+			cout << "\n";
+			linha++;
+			coluna = 0;
 		}
-		fclose(arq);
 	}
+
+
 	MapeiaFase();
+}
+
+bool Level::isDigit( char c ){
+   return ( '0' <= c && c <= '9' );
 }
 
 void Level::MapeiaFase() {
@@ -164,18 +174,15 @@ void Level::MapeiaFase() {
 	}
 }
 
-Coord Level::getPlayerPosition()
-{
+Coord Level::getPlayerPosition(){
 	return playerPosicao;
 }
 
-int Level::getQtdInimigos()
-{
+int Level::getQtdInimigos(){
 	return qtdInimigos;
 }
 
-void Level::DecQtdInimigos()
-{
+void Level::DecQtdInimigos(){
 	qtdInimigos--;
 }
 
@@ -185,4 +192,5 @@ void Level::DesenhaFase() {
 		parede->Display();
 	}
 	
+	//cout<<"MEU SACO " << this->qtdInimigos << " " << this->qtdColunas << " " << " " << this->qtdLinhas << endl;
 }

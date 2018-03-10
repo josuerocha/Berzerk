@@ -25,7 +25,7 @@ void AnimacaoMorte::Display() {
 	for(Coord* ponto : vetorPontos) {
 		glVertex2f(ponto->x * morteCont, ponto->y * morteCont);
 	}
-	if (morteCont < 1400) { morteCont++; }
+	if (morteCont < 1400) { morteCont+=5; }
 	else { isActive = false; }
 	glEnd();
 

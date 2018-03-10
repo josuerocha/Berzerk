@@ -1,13 +1,13 @@
 #ifndef Level_h
 #define Level_h
 
-#pragma once
 #include <iostream>
-#include <stdio.h>
 #include <GL/glut.h>
 #include <math.h>
 #include <string>
 #include <vector>
+#include <fstream>
+
 #include "Enemy.h"
 #include "Estruturas.h"
 #include "Medkit.h"
@@ -19,21 +19,21 @@ private:
 	Coord playerPosicao;
 	int qtdInimigos;
 	int tipo;
-	int xponto = 100; int yponto = 300;
-	int xponto2 = 740; int yponto2 = 200;
-	int percorreLinha = 0;
-	int percorreColuna = 0;
+	int xponto; int yponto;
+	int xponto2; int yponto2;
+	int percorreLinha;
+	int percorreColuna;
 
-	int xpontoparedeEsq = 25; int ypontoparedeEsq = 50;
-	int ypontoparede2 = 550;
-	int xpontoparedeDirIn = 1040; int xpontoparedeDirFin = 740;
+	int xpontoparedeEsq; int ypontoparedeEsq;
+	int ypontoparede2;
+	int xpontoparedeDirIn; int xpontoparedeDirFin;
 
 	int vetCores[50];
 
-	int qtdLinhas = 26;
-	int qtdColunas = 50;
-	int linha = 0;
-	int coluna = 0;
+	int qtdLinhas;
+	int qtdColunas;
+	int linha;
+	int coluna;
 
 
 public:
@@ -50,6 +50,7 @@ public:
 	Level(int tipo);
 	void DesenhaFase();
 	void LerArquivo(std::string url);
+	bool isDigit( char c );
 	void MapeiaFase();
 	Coord getPlayerPosition();
 	int getQtdInimigos();

@@ -1,5 +1,9 @@
 #include "Player.h"
 
+Player::Player(){
+	this->vidasBackup = 0;
+	this->isActive = false;
+}
 
 Player::Player(Coord c, Dimensao d, int velocidade, float hp, Cor cor,int vidas, int tiros)
 {	this->c = c;
@@ -10,6 +14,8 @@ Player::Player(Coord c, Dimensao d, int velocidade, float hp, Cor cor,int vidas,
 	this->hpOriginal = hp;
 	this->vidas = vidas;
 	this->tirosEspeciais = tiros;
+	this->isActive = true;
+	this->isActiveBackup = false;
 
 	this->cBackup = c;
 	this->dBackup = d;

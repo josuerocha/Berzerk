@@ -33,8 +33,8 @@ void Tela::Logica() {
 
 }
 
-Tela::~Tela()
-{
+Tela::~Tela(){
+
 }
 
 void Tela::Initialize() {

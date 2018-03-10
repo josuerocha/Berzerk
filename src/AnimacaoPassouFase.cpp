@@ -35,7 +35,7 @@ void AnimacaoPassouFase::Display(int numFase) {
 	for(Coord* ponto : vetorPontos) {
 		glVertex2f(ponto->x * animacaoCont, ponto->y * animacaoCont);
 	}
-	if (animacaoCont < 1400) { animacaoCont++; }
+	if (animacaoCont < 1400) { animacaoCont+=5; }
 	else { isActive = false; }
 	glEnd();
 	FuncoesExtra::DesenhaTexto("PARABENS, VOCE PASSOU DE FASE!!!", Coord(400, 300), Cor(1, 1, 1));

@@ -105,7 +105,7 @@ void Timer(int value) {
 	tela.MoveProjectiles();
 	tela.EnemiesShoot();
 	glutPostRedisplay();
-	glutTimerFunc(25, Timer, value);      /* 30 frames per second */
+	glutTimerFunc(5, Timer, value);      /* 30 frames per second */
 }
 
 
