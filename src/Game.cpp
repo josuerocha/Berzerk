@@ -177,6 +177,7 @@ void Game::DisplayCharacters() {
 }
 
 void Game::setWindowValues() {
+
 	window.width = 800;
 	window.height = 600;
 	window.title = "BERZERK";
@@ -498,7 +499,7 @@ void Game::moveEnemies() {
 bool Game::ChecarColisoesParedes(int variacaox, int variacaoy) {
 	BoundingBox *jogador = new BoundingBox(player.c.x+ variacaox, player.c.y + variacaoy, player.d.largura, player.d.altura);
 	bool podeMover = false;
-	for (int i = 0; i < level.walls.size(); i++) {
+	for (unsigned int i = 0; i < level.walls.size(); i++) {
 		BoundingBox *parede = new BoundingBox(level.walls[i]->c.x, level.walls[i]->c.y, level.walls[i]->d.largura, level.walls[i]->d.altura);
 		podeMover = !Utilities::checkCollision(jogador, parede);
 		if (podeMover == false) break;
