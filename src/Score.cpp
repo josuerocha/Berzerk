@@ -40,32 +40,32 @@ void Score::IncHits(int incHits) {
 
 void Score::Display(int vidas) {
 	
-	std::string pontuacaoString = FuncoesExtra::to_string(pontuacao);
+	std::string pontuacaoString = Utilities::to_string(pontuacao);
 	char pontuacaoVetor[30];
 	strcpy(pontuacaoVetor, pontuacaoString.c_str());
-	FuncoesExtra::DesenhaTexto("SCORE: ",Coord(800,15),Cor(0,0,1));
-	FuncoesExtra::DesenhaTexto(pontuacaoVetor, Coord(950, 15), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("SCORE: ",Coord(800,15),Cor(0,0,1));
+	Utilities::DesenhaTexto(pontuacaoVetor, Coord(950, 15), Cor(1, 1, 1));
 
 	std::ostringstream out;
 	out << std::setprecision(3) << accuracy * 100;
 	std::string accuracyString = out.str();
 	char accuracyChar[30];
 	strcpy(accuracyChar, accuracyString.c_str());
-	FuncoesExtra::DesenhaTexto("ACCURACY: ", Coord(490, 15), Cor(0, 0, 1));
-	FuncoesExtra::DesenhaTexto(accuracyChar, Coord(690, 15), Cor(1, 1, 1));
-	FuncoesExtra::DesenhaTexto("%", Coord(725, 15), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("ACCURACY: ", Coord(490, 15), Cor(0, 0, 1));
+	Utilities::DesenhaTexto(accuracyChar, Coord(690, 15), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("%", Coord(725, 15), Cor(1, 1, 1));
 	glColor3f(1, 0, 0);
 	if (vidas == 3){
-	FuncoesExtra::DrawCircle(Coord(400,25),10,6);
-	FuncoesExtra::DrawCircle(Coord(430, 25), 10, 6);
-	FuncoesExtra::DrawCircle(Coord(460, 25), 10, 6);
+	Utilities::DrawCircle(Coord(400,25),10,6);
+	Utilities::DrawCircle(Coord(430, 25), 10, 6);
+	Utilities::DrawCircle(Coord(460, 25), 10, 6);
 	}
 	else if (vidas == 2) {
-	FuncoesExtra::DrawCircle(Coord(400, 25), 10, 6);
-	FuncoesExtra::DrawCircle(Coord(430, 25), 10, 6);
+	Utilities::DrawCircle(Coord(400, 25), 10, 6);
+	Utilities::DrawCircle(Coord(430, 25), 10, 6);
 	}
 	else if (vidas == 1) {
-	FuncoesExtra::DrawCircle(Coord(400, 25), 10, 6);
+	Utilities::DrawCircle(Coord(400, 25), 10, 6);
 	}
 }
 

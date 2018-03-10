@@ -2,12 +2,12 @@
 #include <iostream>
 #include <GL/glut.h>
 #include <math.h>
-#include "FuncoesExtra.h"
+#include <Utilities.h>
 
 class AnimacaoInicial
 {
 public:
-	//VARIÁVEIS DA ANIMAÇÃO
+	//VARIï¿½VEIS DA ANIMAï¿½ï¿½O
 	int x1;
 	int yaa;
 	int py ;

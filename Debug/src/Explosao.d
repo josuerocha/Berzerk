@@ -1,6 +1,5 @@
 src/Explosao.o: ../src/Explosao.cpp ../header/Explosao.h \
- ../header/Estruturas.h ../header/EfeitosVisuais.h \
- ../header/FuncoesExtra.h
+ ../header/Estruturas.h ../header/EfeitosVisuais.h ../header/Utilities.h
 
 ../header/Explosao.h:
 
@@ -8,4 +7,4 @@ src/Explosao.o: ../src/Explosao.cpp ../header/Explosao.h \
 
 ../header/EfeitosVisuais.h:
 
-../header/FuncoesExtra.h:
+../header/Utilities.h:

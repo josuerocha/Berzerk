@@ -43,7 +43,7 @@ public:
 
 	//Vectors de inimigos e paredes
 	std::vector <Enemy*> vetorInimigos;
-	std::vector <Parede*> vetorParede;
+	std::vector <Parede*> walls;
 	std::vector <Coletavel*> vetorColetaveis;
 
 	int matTela[26][50];

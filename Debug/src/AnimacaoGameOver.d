@@ -1,11 +1,11 @@
 src/AnimacaoGameOver.o: ../src/AnimacaoGameOver.cpp \
  ../header/AnimacaoGameOver.h ../header/EfeitosVisuais.h \
- ../header/Estruturas.h ../header/FuncoesExtra.h
+ ../header/Utilities.h ../header/Estruturas.h
 
 ../header/AnimacaoGameOver.h:
 
 ../header/EfeitosVisuais.h:
 
-../header/Estruturas.h:
+../header/Utilities.h:
 
-../header/FuncoesExtra.h:
+../header/Estruturas.h:

@@ -12,11 +12,11 @@
 #include <string>
 #include <iostream>
 
-class FuncoesExtra
+class Utilities
 {
 public:
-	FuncoesExtra();
-	~FuncoesExtra();
+	Utilities();
+	~Utilities();
 	static void DesenhaTexto(char *string, Coord c, Cor cor);
 	static void DesenhaTextoMouse(char * string, Coord mouse, Cor cor);
 	static void DesenhaInstrucoesBloco(char * string, Coord c);

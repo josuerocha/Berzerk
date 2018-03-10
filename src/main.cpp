@@ -1,13 +1,13 @@
 
+#include <Game.h>
 #include <iostream>
 #include <GL/glut.h>
 #include <time.h>
 #include <stdlib.h>
 #include <math.h>
-#include "Tela.h"
 using namespace std;
 //--------------- Defini��es -----------------
-Tela tela;
+Game tela;
 // Teclado
 #define UP 'w'
 #define DOWN 's'

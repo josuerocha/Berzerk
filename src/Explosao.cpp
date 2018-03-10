@@ -20,17 +20,17 @@ Explosao::~Explosao()
 
 void Explosao::Display() {
 		glColor3f(1, 1, 0);
-		FuncoesExtra::DrawCircle(c, size*1.9, 5);
+		Utilities::DrawCircle(c, size*1.9, 5);
 
 		glColor3f(1, 0.647059, 0);
-		FuncoesExtra::DrawCircle(c, size*1.6, 5);
+		Utilities::DrawCircle(c, size*1.6, 5);
 
 
 		glColor3f(1, 0.54902, 0);
-		FuncoesExtra::DrawCircle(c, size*1.3, 5);
+		Utilities::DrawCircle(c, size*1.3, 5);
 
 		glColor3f(1, 0, 0);
-		FuncoesExtra::DrawCircle(c, size, 5);
+		Utilities::DrawCircle(c, size, 5);
 		if(decrementa){
 			size -= SPEED;
 		}

@@ -107,7 +107,7 @@ void Level::MapeiaFase() {
 
 				//empilha para checar colisao mais tarde
 				contParedes++;
-				vetorParede.push_back(new Parede(Coord(xpontoParedeAtualizado1, ypontoParedeAtualizado1),Dimensao(20,20),Cor(vetCores[0], vetCores[1], vetCores[2]),Cor(vetCores[3], vetCores[4], vetCores[5])));
+				walls.push_back(new Parede(Coord(xpontoParedeAtualizado1, ypontoParedeAtualizado1),Dimensao(20,20),Cor(vetCores[0], vetCores[1], vetCores[2]),Cor(vetCores[3], vetCores[4], vetCores[5])));
 
 				glVertex2i(xpontoParedeAtualizado1, ypontoParedeAtualizado1);
 
@@ -186,7 +186,7 @@ void Level::DecQtdInimigos(){
 
 
 void Level::DesenhaFase() {
-	for(Parede* parede : vetorParede) {
+	for(Parede* parede : walls) {
 		parede->Display();
 	}
 	

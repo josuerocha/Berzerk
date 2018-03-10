@@ -4,8 +4,8 @@
 #include <iostream>
 #include <GL/glut.h>
 #include <math.h>
+#include <Utilities.h>
 #include "Estruturas.h"
-#include "FuncoesExtra.h"
 
 /*Classe abstrata herdada por Player e por Enemy*/
 class Personagem{

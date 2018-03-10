@@ -20,7 +20,7 @@ void AnimacaoFinal::Display() {
 	if (contador >= 1000) {
 		isActive = false;
 	}
-	FuncoesExtra::DesenhaTexto("VOCE ZEROU O JOGO PARABENS!!!!!!!", Coord(450, 450), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("VOCE ZEROU O JOGO PARABENS!!!!!!!", Coord(450, 450), Cor(1, 1, 1));
 	glClear(GL_COLOR_BUFFER_BIT);   // Clear the color buffer
 	glMatrixMode(GL_MODELVIEW);     // To operate on Model-View matrix
 	glLoadIdentity();               // Reset the model-view matrix

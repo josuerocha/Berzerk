@@ -1,11 +1,11 @@
-#include "Tela.h"
+#include <Game.h>
 #include <iostream>
 using namespace std;
 
-Tela::Tela(){
+Game::Game(){
 
 	animacaoInicial = AnimacaoInicial();
-	fase = Level(1);
+	level = Level(1);
 	efeitoPassouFase = new AnimacaoPassouFase(0);
 	efeitoMorte = new AnimacaoMorte();
 	efeitoGameOver = new AnimacaoGameOver();
@@ -23,8 +23,8 @@ Tela::Tela(){
 	cout<<"LEFT CONSTRUCTOR" << endl;
 }
 
-void Tela::Logica() {
-	if ((fase.getQtdInimigos() <= 0) && (player.getHP() > 0)) {
+void Game::Logica() {
+	if ((level.getQtdInimigos() <= 0) && (player.getHP() > 0)) {
 		passouDeFase = true;
 		cout<< "LEVEL UP" << endl;
 	}
@@ -34,17 +34,17 @@ void Tela::Logica() {
 
 }
 
-Tela::~Tela(){
+Game::~Game(){
 
 }
 
-void Tela::Initialize() {
+void Game::Initialize() {
 	player = Player(Coord(100, 100), Dimensao(25, 25), 10, 100, Cor(1.0, 0.5, 0.0),3,50);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	shoot = 0;
 }
 
-void Tela::AlteraTamanhoJanela(GLsizei w, GLsizei h){
+void Game::AlteraTamanhoJanela(GLsizei w, GLsizei h){
 	if (h == 0) h = 1;
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
@@ -62,7 +62,7 @@ void Tela::AlteraTamanhoJanela(GLsizei w, GLsizei h){
 	cout << "TAMANHO TELA " << w << "  " << h;
 }
 
-void Tela::Display() {
+void Game::Display() {
 	Logica();
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
@@ -91,7 +91,7 @@ void Tela::Display() {
 	}
 
 	if(!menu->emMenuPrincipal && !passouDeFase && !animacaoMorte && !animacaoInicial.emAnimacao && !animacaoFinalFlag){
-		fase.DesenhaFase();
+		level.DesenhaFase();
 		DisplayCharacters();
 		ChecarColisoes();
 	}
@@ -105,8 +105,8 @@ void Tela::Display() {
 		if(!efeitoPassouFase->isActive){
 			faseAtual++;
 			visualEffects.clear();
-			fase = Level(faseAtual + 1);
-			player.setC(fase.getPlayerPosition());
+			level = Level(faseAtual + 1);
+			player.setC(level.getPlayerPosition());
 			passouDeFase = false;
 
 			for(Projectile* p : friendlyProjectiles) {
@@ -135,10 +135,10 @@ void Tela::Display() {
 		animacaoMorte = true;
 		efeitoMorte->Display();
 		if (!efeitoMorte->isActive) {
-			fase = Level(faseAtual + 1);
+			level = Level(faseAtual + 1);
 			visualEffects.clear();
 			player.Reset();
-			player.setC(fase.getPlayerPosition());
+			player.setC(level.getPlayerPosition());
 			player.isActive = true;
 			animacaoMorte = false;
 			efeitoMorte->Reset();
@@ -150,7 +150,7 @@ void Tela::Display() {
 		if (!efeitoGameOver->isActive) {
 			player.IncHP(100);
 			player.isActive = true;
-			fase = Level(1);
+			level = Level(1);
 			score.Reset();
 			visualEffects.clear();
 			menu = new MainMenu();
@@ -166,7 +166,7 @@ void Tela::Display() {
 	glutSwapBuffers();
 }
 
-void Tela::DisplayCharacters() {
+void Game::DisplayCharacters() {
 	DisplayEnemies();
 	player.Display();
 	DisplayProjectiles();
@@ -176,7 +176,7 @@ void Tela::DisplayCharacters() {
 	DisplayColetaveis();
 }
 
-void Tela::setWindowValues() {
+void Game::setWindowValues() {
 	window.width = 800;
 	window.height = 600;
 	window.title = "BERZERK";
@@ -185,7 +185,7 @@ void Tela::setWindowValues() {
 	window.z_far = 100.0f;
 }
 
-void Tela::DisplayProjectiles() {
+void Game::DisplayProjectiles() {
 
 	for(Projectile* p : friendlyProjectiles) {
 		if (p->isActive()) {
@@ -194,7 +194,7 @@ void Tela::DisplayProjectiles() {
 	}
 }
 
-void Tela::DisplayEnemyProjectiles() {
+void Game::DisplayEnemyProjectiles() {
 	for( Projectile* p : enemyProjectiles) {
 		if (p->isActive()) {
 			p->Display();
@@ -202,7 +202,7 @@ void Tela::DisplayEnemyProjectiles() {
 	}
 }
 
-void Tela::CheckMapBoundaries(){
+void Game::CheckMapBoundaries(){
 	if (player.getC().x > window.width) {
 		player.c.x = window.width;
 	}
@@ -217,7 +217,7 @@ void Tela::CheckMapBoundaries(){
 	}
 }
 
-void Tela::MovePlayer() {
+void Game::MovePlayer() {
 
 	if (keyBuffer[0] == true) { player.IncY(5, ChecarColisoesParedes(0,1)); }
 	if (keyBuffer[1] == true) { player.IncY(-5, ChecarColisoesParedes(0,-1)); }
@@ -227,7 +227,7 @@ void Tela::MovePlayer() {
 	if (keyBuffer[5] == true) { shoot = 2; keyBuffer[5] = false; }
 }
 
-void Tela::keyboardDown(unsigned char key, int x, int y) {
+void Game::keyboardDown(unsigned char key, int x, int y) {
 	cout << "Tecla regular pressionada: " << char(key) << ". Mouse (" << x << ',' << y << ')' << endl;
 
 	switch (key) {
@@ -315,7 +315,7 @@ void Tela::keyboardDown(unsigned char key, int x, int y) {
 	cout << "POSICAO X: " << x << "POSICAO Y: " << y << endl;
 }
 
-void Tela::mouseMotion(int x, int y) {
+void Game::mouseMotion(int x, int y) {
 	if (keyBuffer[4]) {
 		GLint viewport[4]; //var to hold the viewport info
 		GLdouble modelview[16]; //var to hold the modelview info
@@ -338,22 +338,22 @@ void Tela::mouseMotion(int x, int y) {
 	}
 }
 
-void Tela::MoveProjectiles() {
+void Game::MoveProjectiles() {
 	MoveFriendlyProjectiles();
 	MoveEnemyProjectiles();
 }
 
-void Tela::MoveFriendlyProjectiles() {
+void Game::MoveFriendlyProjectiles() {
 	if (shoot == 1) {
 		for (int i = 0; i < MAX_PROJECTILES; i++) {
 			if (friendlyProjectiles.size() < MAX_PROJECTILES) {
-				friendlyProjectiles.push_back(new Projectile(player.Centro(), FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse),Dimensao(5,5), 900, 10, PROJECTILE_VELOCITY, true,Cor(0,0,1)));
+				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::CalculaVetorUnitario(player.Centro(), mouse),Dimensao(5,5), 900, 10, PROJECTILE_VELOCITY, true,Cor(0,0,1)));
 				score.IncTiros(1);
 				break;
 			}
 			else if(!friendlyProjectiles[i]->isActive()){
 				friendlyProjectiles[i]->c = player.c;
-				friendlyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse);
+				friendlyProjectiles[i]->vetor = Utilities::CalculaVetorUnitario(player.Centro(), mouse);
 				friendlyProjectiles[i]->alcance = 900;
 				friendlyProjectiles[i]->dano = 10;
 				friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY;
@@ -367,13 +367,13 @@ void Tela::MoveFriendlyProjectiles() {
 	if (shoot == 2 && (player.getTiros()>0)) {
 		for (int i = 0; i < MAX_PROJECTILES; i++) {
 			if (friendlyProjectiles.size() < MAX_PROJECTILES) {
-				friendlyProjectiles.push_back(new Projectile(player.Centro(), FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse), Dimensao(20, 20), 900, 50, PROJECTILE_VELOCITY, true, Cor(0, 0, 1)));
+				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::CalculaVetorUnitario(player.Centro(), mouse), Dimensao(20, 20), 900, 50, PROJECTILE_VELOCITY, true, Cor(0, 0, 1)));
 				score.IncTiros(1);
 				player.decTirosEspeciais();
 				break;
 			}
 			else if (!friendlyProjectiles[i]->isActive()) {
-				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(player.Centro(), mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 50; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->active = true; friendlyProjectiles[i]->d = Dimensao(20, 20);
+				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = Utilities::CalculaVetorUnitario(player.Centro(), mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 50; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->active = true; friendlyProjectiles[i]->d = Dimensao(20, 20);
 				score.IncTiros(1);
 				player.decTirosEspeciais();
 				break;
@@ -392,7 +392,7 @@ void Tela::MoveFriendlyProjectiles() {
 	}
 }
 
-void Tela::MoveEnemyProjectiles() {
+void Game::MoveEnemyProjectiles() {
 	for(Projectile* projetil : enemyProjectiles) {
 		if (projetil->isActive()) {
 			projetil->c = Coord(projetil->c.x + (projetil->vetor.x * projetil->velocity),projetil->c.y + (projetil->vetor.y * projetil->velocity));
@@ -404,7 +404,7 @@ void Tela::MoveEnemyProjectiles() {
 	}
 }
 
-void Tela::keyboardUp(unsigned char key, int x, int y) {
+void Game::keyboardUp(unsigned char key, int x, int y) {
 	cout << "Tecla regular solta: " << char(key) << ". Mouse (" << x << ',' << y << ')' << endl;
 	switch (key) {
 	case UP:
@@ -422,7 +422,7 @@ void Tela::keyboardUp(unsigned char key, int x, int y) {
 	}
 }
 
-void Tela::mouseClick(int button, int state, int x, int y) {
+void Game::mouseClick(int button, int state, int x, int y) {
 
 	if (state == GLUT_DOWN) {
 		GLint viewport[4]; //var to hold the viewport info
@@ -458,51 +458,54 @@ void Tela::mouseClick(int button, int state, int x, int y) {
 	}
 }
 
-void Tela::DisplayEnemies() {
-	for(Enemy* inimigo : fase.vetorInimigos) {
-		inimigo->Display();
+void Game::DisplayEnemies() {
+	for(Enemy* enemy : level.vetorInimigos) {
+		enemy->Display();
 	}
 }
 
 
-void Tela::ChecaColisaoInimigosParedes() {
+void Game::ChecaColisaoInimigosParedes() {
 	bool podeMover = true;
-	for(Enemy* inimigo : fase.vetorInimigos) {
-		if ((inimigo->getIsActive())) {
+	for(Enemy* enemy : level.vetorInimigos) {
+		if ((enemy->getIsActive())) {
 		Coord playerCenter = player.Centro();
-		Coord nova = inimigo->FollowPlayer(&playerCenter);
-		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, inimigo->d.largura, inimigo->d.altura);
-		for(Parede* parede : fase.vetorParede) {
+		Coord nova = enemy->FollowPlayer(&playerCenter);
+		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, enemy->d.largura, enemy->d.altura);
+
+		for(Parede* parede : level.walls) {
 			BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
-			podeMover = !FuncoesExtra::checkCollision(spriteInimigo, spriteParede);
+			podeMover = !Utilities::checkCollision(spriteInimigo, spriteParede);
 			delete spriteParede;
 			spriteParede = NULL;
 			if (!podeMover) { break; }
 		}
-		if (inimigo->tipo == 5){
-		inimigo->Move(&nova, true);
+
+		if (enemy->tipo == 5){
+			enemy->Move(&nova, true);
 		}
 		else {
-		inimigo->Move(&nova, podeMover);
+			enemy->Move(&nova, podeMover);
 		}
+
 		delete spriteInimigo;
 		spriteInimigo = NULL;
 		}
 	}
 }
 
-bool Tela::ChecarColisoesParedes(int variacaox, int variacaoy) {
+bool Game::ChecarColisoesParedes(int variacaox, int variacaoy) {
 	BoundingBox *jogador = new BoundingBox(player.c.x+ variacaox, player.c.y + variacaoy, player.d.largura, player.d.altura);
 	bool podeMover = false;
-	for (int i = 0; i < fase.vetorParede.size(); i++) {
-		BoundingBox *parede = new BoundingBox(fase.vetorParede[i]->c.x, fase.vetorParede[i]->c.y, fase.vetorParede[i]->d.largura, fase.vetorParede[i]->d.altura);
-		podeMover = !FuncoesExtra::checkCollision(jogador, parede);
+	for (int i = 0; i < level.walls.size(); i++) {
+		BoundingBox *parede = new BoundingBox(level.walls[i]->c.x, level.walls[i]->c.y, level.walls[i]->d.largura, level.walls[i]->d.altura);
+		podeMover = !Utilities::checkCollision(jogador, parede);
 		if (podeMover == false) break;
 	}
 	return podeMover;
 }
 
-void Tela::ChecarColisoes() {
+void Game::ChecarColisoes() {
 	ChecarColisoesProjeteisAmigos();
 	ChecarColisoesProjeteisInimigos();
 	ChecarColisoesInimigos();
@@ -511,13 +514,13 @@ void Tela::ChecarColisoes() {
 	ChecarColisoesColetaveis();
 }
 
-void Tela::ChecarColisoesProjeteisInimigos() {
+void Game::ChecarColisoesProjeteisInimigos() {
 
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x , player.c.y , player.d.largura, player.d.altura);
 	for(Projectile* projetilInimigo : enemyProjectiles) {
 		if(projetilInimigo->isActive()){
 			BoundingBox *spriteInimigo = new BoundingBox(projetilInimigo->c.x, projetilInimigo->c.y, projetilInimigo->d.largura, projetilInimigo->d.altura);
-			if (FuncoesExtra::checkCollision(spriteJogador, spriteInimigo)) {
+			if (Utilities::checkCollision(spriteJogador, spriteInimigo)) {
 				visualEffects.push_back(new Explosao(player.Centro(), "pequena"));
 				player.DecHP(projetilInimigo->dano);
 			if(player.getHP() <= 0){
@@ -529,22 +532,22 @@ void Tela::ChecarColisoesProjeteisInimigos() {
 	}
 }
 
-void Tela::ChecarColisoesProjeteisAmigos() {
+void Game::ChecarColisoesProjeteisAmigos() {
 	for(Projectile* projetilAmigo : friendlyProjectiles) {
 		if (projetilAmigo->isActive()){
 			BoundingBox *spriteProjetil = new BoundingBox(projetilAmigo->c.x, projetilAmigo->c.y, projetilAmigo->d.largura, projetilAmigo->d.altura);
-			for(Enemy* inimigo : fase.vetorInimigos) {
+			for(Enemy* inimigo : level.vetorInimigos) {
 				BoundingBox *spriteInimigo = new BoundingBox(inimigo->c.x, inimigo->c.y, inimigo->d.largura, inimigo->d.altura);
 				if (projetilAmigo->isActive()){
 					if (inimigo->getIsActive()) {
-						if (FuncoesExtra::checkCollision(spriteProjetil, spriteInimigo)) {
+						if (Utilities::checkCollision(spriteProjetil, spriteInimigo)) {
 							projetilAmigo->Deactivate();
 							inimigo->DecHP(projetilAmigo->dano);
 							score.IncHits(1);
 							visualEffects.push_back(new Explosao(inimigo->Centro(), "pequena"));
 							if (!inimigo->getIsActive()) {
 								visualEffects.push_back(new Explosao(inimigo->Centro(),"media"));
-								fase.DecQtdInimigos();
+								level.DecQtdInimigos();
 								score.IncPontuacao(inimigo->getScoreWorth());
 							}
 						}
@@ -555,12 +558,12 @@ void Tela::ChecarColisoesProjeteisAmigos() {
 }
 }
 
-void Tela::ChecarColisoesInimigos() {
+void Game::ChecarColisoesInimigos() {
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x, player.c.y, player.d.largura, player.d.altura);
-	for(Enemy* enemy : fase.vetorInimigos) {
+	for(Enemy* enemy : level.vetorInimigos) {
 		if (enemy->getIsActive()) {
 			BoundingBox *spriteInimigo = new BoundingBox(enemy->c.x, enemy->c.y, enemy->d.largura, enemy->d.altura);
-			if (FuncoesExtra::checkCollision(spriteJogador, spriteInimigo)) {
+			if (Utilities::checkCollision(spriteJogador, spriteInimigo)) {
 				visualEffects.push_back(new Explosao(player.Centro(), "grande"));
 				player.Kill();
 				enemy->Kill();
@@ -574,16 +577,16 @@ void Tela::ChecarColisoesInimigos() {
 	spriteJogador = NULL;
 }
 
-void Tela::EnemiesShoot() {
+void Game::EnemiesShoot() {
 	contadorTempo++;
 	if (contadorTempo % 10 == 0) {
-		for(Enemy* enemy : fase.vetorInimigos) {
+		for(Enemy* enemy : level.vetorInimigos) {
 		if (enemy->isActive){
 			if (rand() % 10 < 1) {
 				for (int i = 0; i < MAX_PROJECTILES; i++) {
 					if (enemyProjectiles.size() < MAX_PROJECTILES) {
 						enemyProjectiles.push_back(new Projectile(enemy->Centro(),
-								FuncoesExtra::CalculaVetorUnitario(enemy->Centro(), player.Centro()),
+								Utilities::CalculaVetorUnitario(enemy->Centro(), player.Centro()),
 								Dimensao(5, 5),
 								900,
 								10,
@@ -594,7 +597,7 @@ void Tela::EnemiesShoot() {
 					}
 					else if (!enemyProjectiles[i]->isActive()) {
 						enemyProjectiles[i]->c = enemy->c;
-						enemyProjectiles[i]->vetor = FuncoesExtra::CalculaVetorUnitario(enemy->Centro(), player.Centro());
+						enemyProjectiles[i]->vetor = Utilities::CalculaVetorUnitario(enemy->Centro(), player.Centro());
 						enemyProjectiles[i]->alcance = 900;
 						enemyProjectiles[i]->dano = 10;
 						enemyProjectiles[i]->velocity = PROJECTILE_VELOCITY;
@@ -608,20 +611,20 @@ void Tela::EnemiesShoot() {
 	}
 }
 
-void Tela::DisplayVisualEfects() {
+void Game::DisplayVisualEfects() {
 	for(EfeitosVisuais* efeito : visualEffects) {
 		if(efeito->isActive)
 		efeito->Display();
 	}
 }
 
-void Tela::ChecaColisaoProjeteisParedes() {
+void Game::ChecaColisaoProjeteisParedes() {
 	for(Projectile* projetilAmigo : friendlyProjectiles) {
 		if (projetilAmigo->isActive()) {
 			BoundingBox *spriteProjetil = new BoundingBox(projetilAmigo->c.x, projetilAmigo->c.y, projetilAmigo->d.largura, projetilAmigo->d.altura);
-			for (Parede* parede : fase.vetorParede){
+			for (Parede* parede : level.walls){
 				BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
-				bool colisao = FuncoesExtra::checkCollision(spriteProjetil, spriteParede);
+				bool colisao = Utilities::checkCollision(spriteProjetil, spriteParede);
 				if (colisao == true) {
 					projetilAmigo->Deactivate();
 					break;
@@ -637,9 +640,9 @@ void Tela::ChecaColisaoProjeteisParedes() {
 	for(Projectile* projetilInimigo : enemyProjectiles) {
 		if (projetilInimigo->isActive()) {
 			BoundingBox *spriteProjetil = new BoundingBox(projetilInimigo->c.x, projetilInimigo->c.y, projetilInimigo->d.largura, projetilInimigo->d.altura);
-			for (Parede* parede : fase.vetorParede) {
+			for (Parede* parede : level.walls) {
 				BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
-				bool colisao = FuncoesExtra::checkCollision(spriteProjetil, spriteParede);
+				bool colisao = Utilities::checkCollision(spriteProjetil, spriteParede);
 				if (colisao == true) {
 					projetilInimigo->Deactivate();
 					break;
@@ -653,18 +656,18 @@ void Tela::ChecaColisaoProjeteisParedes() {
 	}
 }
 
-void Tela::DisplayColetaveis() {
-	for(Coletavel* coletavel : fase.vetorColetaveis) {
+void Game::DisplayColetaveis() {
+	for(Coletavel* coletavel : level.vetorColetaveis) {
 		coletavel->Display();
 	}
 }
 
-void Tela::ChecarColisoesColetaveis() {
+void Game::ChecarColisoesColetaveis() {
 	BoundingBox *spriteJogador = new BoundingBox(player.c.x, player.c.y, player.d.largura, player.d.altura);
-	for(Coletavel* coletavel : fase.vetorColetaveis) {
+	for(Coletavel* coletavel : level.vetorColetaveis) {
 		if (coletavel->active) {
 			BoundingBox *spriteColetavel = new BoundingBox(coletavel->c.x, coletavel->c.y, coletavel->d.largura, coletavel->d.altura);
-			if (FuncoesExtra::checkCollision(spriteJogador, spriteColetavel)) {
+			if (Utilities::checkCollision(spriteJogador, spriteColetavel)) {
 				player.onMedikitCollectAction(coletavel->getCura());
 				coletavel->Dispose();
 			}

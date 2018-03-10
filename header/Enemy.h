@@ -1,8 +1,8 @@
 #ifndef Enemy_h
 #define Enemy_h
+#include <Utilities.h>
 #include "Personagem.h"
 #include "Estruturas.h"
-#include "FuncoesExtra.h"
 
 class Enemy : public Personagem {
 public:

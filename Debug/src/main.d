@@ -1,5 +1,5 @@
-src/main.o: ../src/main.cpp ../header/Tela.h ../header/Projectile.h \
- ../header/Estruturas.h ../header/FuncoesExtra.h ../header/Player.h \
+src/main.o: ../src/main.cpp ../header/Game.h ../header/Utilities.h \
+ ../header/Estruturas.h ../header/Projectile.h ../header/Player.h \
  ../header/Personagem.h ../header/Enemy.h ../header/Level.h \
  ../header/Medkit.h ../header/Coletavel.h ../header/Parede.h \
  ../header/EfeitosVisuais.h ../header/Explosao.h \
@@ -7,13 +7,13 @@ src/main.o: ../src/main.cpp ../header/Tela.h ../header/Projectile.h \
  ../header/AnimacaoMorte.h ../header/AnimacaoPassouFase.h \
  ../header/AnimacaoGameOver.h ../header/AnimacaoFinal.h
 
-../header/Tela.h:
+../header/Game.h:
 
-../header/Projectile.h:
+../header/Utilities.h:
 
 ../header/Estruturas.h:
 
-../header/FuncoesExtra.h:
+../header/Projectile.h:
 
 ../header/Player.h:
 

@@ -2,12 +2,12 @@
 #include <iostream>
 #include <GL/glut.h>
 #include <math.h>
+#include <Utilities.h>
 #include "Estruturas.h"
-#include "FuncoesExtra.h"
 class MainMenu
 {
 public:
-	/*	************** VARIÁVEIS DE MENU *****************/
+	/*	************** VARIï¿½VEIS DE MENU *****************/
 	bool emJogo;
 	bool emTela;
 	bool emMenu;
@@ -15,7 +15,7 @@ public:
 	bool inicia;
 	bool opcao;
 
-	//FLAGS DE FUNÇOES
+	//FLAGS DE FUNï¿½OES
 	bool iniciarMenuButton;
 	bool opcaoMenuButton;
 	bool desenharMenuButton;

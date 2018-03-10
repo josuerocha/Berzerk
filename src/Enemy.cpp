@@ -74,7 +74,7 @@ Enemy::Enemy(Coord c,int tipo) {
 Coord Enemy::FollowPlayer(Coord* coordJogador) {
 	//std::cout << "JOGADOR POSICAO: " << coordJogador->x << " " << coordJogador->y << "\n";
 	if (pow(c.x - coordJogador->x, 2) + pow(c.y - coordJogador->y, 2) <= pow(raioVisao, 2)) {
-		Coord novaCoordenada = FuncoesExtra::CalculaVetorUnitario(c, *coordJogador);
+		Coord novaCoordenada = Utilities::CalculaVetorUnitario(c, *coordJogador);
 		Coord vetor = novaCoordenada;
 		novaCoordenada = Coord(novaCoordenada.x * velocidade + c.x , novaCoordenada.y * velocidade + c.y);
 		return novaCoordenada;
@@ -94,8 +94,9 @@ void Enemy::Kill() {
 }
 
 void Enemy::Display() {
-	if (hp <= 0) { Kill(); }
-	if (isActive){
+	if (hp <= 0) {
+		Kill();
+	}else{
 		if(tipo == 1){
 			glBegin(GL_QUADS);
 			glColor3f(cor.r, cor.g, cor.b);
@@ -118,15 +119,15 @@ void Enemy::Display() {
 		}
 		else if (tipo == 3) {
 			glColor3f(cor.r, cor.g, cor.b);
-			FuncoesExtra::DrawCircle(Centro(), d.largura / 2, 6); //Desenha hexagono
+			Utilities::DrawCircle(Centro(), d.largura / 2, 6); //Desenha hexagono
 		}
 		else if (tipo == 4) {
 			glColor3f(cor.r, cor.g, cor.b);
-			FuncoesExtra::DrawCircle(Centro(), d.largura / 2, 8); //Desenha octogono
+			Utilities::DrawCircle(Centro(), d.largura / 2, 8); //Desenha octogono
 		}
 		else if (tipo == 5) {
 			glColor3f(cor.r, cor.g, cor.b);
-			FuncoesExtra::DrawCircle(Centro(), d.largura /2, 50);//Desenha circulo
+			Utilities::DrawCircle(Centro(), d.largura /2, 50);//Desenha circulo
 		}
 
 	float healthPercentage = hp / hpOriginal;

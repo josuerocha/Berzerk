@@ -3,8 +3,8 @@
 
 #include <iostream>
 #include <GL/glut.h>
+#include <Utilities.h>
 #include "Projectile.h"
-#include "FuncoesExtra.h"
 #include "Estruturas.h"
 #include "Player.h"
 #include "Enemy.h"
@@ -36,7 +36,7 @@
 #define CAPSRIGHT 'D'
 
 /*classe abstrata para a implementacao das Telas*/
-class Tela{
+class Game{
 
 public:
 	//variaveis de controle
@@ -67,13 +67,13 @@ public:
 	AnimacaoGameOver* efeitoGameOver;
 	AnimacaoFinal animacaoFinal;
 
-	Level fase;
+	Level level;
 	MainMenu* menu;
 
 	glutWindow window;
 
-	Tela();
-	~Tela();
+	Game();
+	~Game();
 
 	void Logica();
 	void MoveProjectiles();

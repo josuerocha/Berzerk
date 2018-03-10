@@ -1,9 +1,7 @@
 #pragma once
 
 //CUSTOM INCLUDES
-#include "FuncoesExtra.h"
-
-//STANDARD INCLUDES
+#include <Utilities.h>
 #include <string>
 #include <cstring>
 #include <iostream>

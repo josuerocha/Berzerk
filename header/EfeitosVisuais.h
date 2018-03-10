@@ -1,8 +1,8 @@
 #pragma once
 #include <vector>
 #include <GL/glut.h>
+#include <Utilities.h>
 #include "Estruturas.h"
-#include "FuncoesExtra.h"
 #include <iostream>
 class EfeitosVisuais
 {

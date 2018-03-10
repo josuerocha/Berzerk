@@ -1,10 +1,10 @@
-src/Enemy.o: ../src/Enemy.cpp ../header/Enemy.h ../header/Personagem.h \
- ../header/Estruturas.h ../header/FuncoesExtra.h
+src/Enemy.o: ../src/Enemy.cpp ../header/Enemy.h ../header/Utilities.h \
+ ../header/Estruturas.h ../header/Personagem.h
 
 ../header/Enemy.h:
 
-../header/Personagem.h:
+../header/Utilities.h:
 
 ../header/Estruturas.h:
 
-../header/FuncoesExtra.h:
+../header/Personagem.h:

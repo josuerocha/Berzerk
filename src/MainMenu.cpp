@@ -46,7 +46,7 @@ void MainMenu::DesenhaTextoMenu(char *string, Coord c)
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(0.00f, 0.00f, 0.00f);
 	glPushMatrix();
-	// Posição no universo onde o texto será colocado  
+	// Posiï¿½ï¿½o no universo onde o texto serï¿½ colocado  
 	glRasterPos2f(c.x, c.y);
 	// glRasterPos2f(-win, win - (win*0.08));
 	// Exibe caracter a caracter
@@ -61,7 +61,7 @@ void MainMenu::DesenhaInstrucoes(char *string, Coord c)
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(1.00f, 1.00f, 1.00f);
 	glPushMatrix();
-	// Posição no universo onde o texto será colocado  
+	// Posiï¿½ï¿½o no universo onde o texto serï¿½ colocado  
 	glRasterPos2f(c.x, c.y);
 	// glRasterPos2f(-win, win - (win*0.08));
 	// Exibe caracter a caracter
@@ -76,7 +76,7 @@ void MainMenu::DesenhaInstrucoesBloco(char *string, Coord c)
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(0.00f, 0.00f, 0.00f);
 	glPushMatrix();
-	// Posição no universo onde o texto será colocado  
+	// Posiï¿½ï¿½o no universo onde o texto serï¿½ colocado  
 	glRasterPos2f(c.x, c.y);
 	// glRasterPos2f(-win, win - (win*0.08));
 	// Exibe caracter a caracter
@@ -91,7 +91,7 @@ void MainMenu::OpcaoMenu() {
 	glPushMatrix();
 	// define a cor verde para o desenho do retangulo
 	glColor3f(0.66f, 0.66f, 0.66f);
-	// desenha um retângulo
+	// desenha um retï¿½ngulo
 
 	//teclado A
 	glBegin(GL_POLYGON);
@@ -268,10 +268,10 @@ void MainMenu::OpcaoMenu() {
 	DesenhaInstrucoesBloco("O:", Coord(142, 231));
 	DesenhaInstrucoes("Entra na tela de opcoes", Coord(180, 230));
 	DesenhaInstrucoesBloco("Teclas de Jogo",Coord( 427, 199));
-	FuncoesExtra::DesenhaTextoMouse("1",Coord( 178, 138),Cor(1,1,1));
-	FuncoesExtra::DesenhaTextoMouse("2",Coord( 202, 138), Cor(1, 1, 1));
-	FuncoesExtra::DesenhaTextoMouse("1",Coord( 238, 137), Cor(1, 1, 1));
-	FuncoesExtra::DesenhaTextoMouse("2", Coord(238, 112), Cor(1, 1, 1));
+	Utilities::DesenhaTextoMouse("1",Coord( 178, 138),Cor(1,1,1));
+	Utilities::DesenhaTextoMouse("2",Coord( 202, 138), Cor(1, 1, 1));
+	Utilities::DesenhaTextoMouse("1",Coord( 238, 137), Cor(1, 1, 1));
+	Utilities::DesenhaTextoMouse("2", Coord(238, 112), Cor(1, 1, 1));
 	DesenhaInstrucoes("Tiro 1",Coord( 262, 133));
 	DesenhaInstrucoes("Tiro 2",Coord( 262, 106));
 
@@ -311,7 +311,7 @@ void MainMenu::Display() {
 	glPushMatrix();
 	// define a cor verde para o desenho do retangulo
 	glColor3f(0.66f, 0.66f, 0.66f);
-	// desenha um retângulo
+	// desenha um retï¿½ngulo
 	glBegin(GL_POLYGON);
 	glVertex2f(350, 450);
 	glVertex2f(350, 400);
@@ -346,7 +346,7 @@ void MainMenu::Display() {
 	glPopMatrix();
 }
 
-// chama as funções de acordo com a posição do clique  - iniciar, opções ou sair.
+// chama as funï¿½ï¿½es de acordo com a posiï¿½ï¿½o do clique  - iniciar, opï¿½ï¿½es ou sair.
 void MainMenu::OpcaoClick(int op) {
 	if (op == 1) {
 		iniciarMenuButton = true;
@@ -371,7 +371,7 @@ void MainMenu::OpcaoClick(int op) {
 	}
 }
 
-// verifica qual opção do menu foi selecionada - iniciar, opções ou sair.
+// verifica qual opï¿½ï¿½o do menu foi selecionada - iniciar, opï¿½ï¿½es ou sair.
 void MainMenu::PosicaoMenu() {
 	if(clickAtivo){
 	//INICIAR	
@@ -387,7 +387,7 @@ void MainMenu::PosicaoMenu() {
 				}
 			}
 		}
-		//OPÇÕES
+		//OPï¿½ï¿½ES
 		if ((mouse.x >= 350) && (mouse.x <= 700)) {
 			if ((mouse.y >= 320) && (mouse.y <= 370)) {
 				if (!inicia) {

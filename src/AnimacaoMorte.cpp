@@ -29,7 +29,7 @@ void AnimacaoMorte::Display() {
 	else { isActive = false; }
 	glEnd();
 
-	FuncoesExtra::DesenhaTexto("VOCE MORREU!", Coord(400, 300), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("VOCE MORREU!", Coord(400, 300), Cor(1, 1, 1));
 }
 
 void AnimacaoMorte::Reset() {

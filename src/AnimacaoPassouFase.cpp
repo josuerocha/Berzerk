@@ -38,28 +38,28 @@ void AnimacaoPassouFase::Display(int numFase) {
 	if (animacaoCont < 1400) { animacaoCont+=5; }
 	else { isActive = false; }
 	glEnd();
-	FuncoesExtra::DesenhaTexto("PARABENS, VOCE PASSOU DE FASE!!!", Coord(400, 300), Cor(1, 1, 1));
-	FuncoesExtra::DesenhaTexto("FASE", Coord(400, 250), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("PARABENS, VOCE PASSOU DE FASE!!!", Coord(400, 300), Cor(1, 1, 1));
+	Utilities::DesenhaTexto("FASE", Coord(400, 250), Cor(1, 1, 1));
 
-	std::string numFaseString = FuncoesExtra::to_string(numFase);
+	std::string numFaseString = Utilities::to_string(numFase);
 	char numFaseChar[30];
 	strcpy(numFaseChar, numFaseString.c_str());
 
 	;
 	if (numFase == 2) {
-		FuncoesExtra::DesenhaTexto("II:", Coord(500, 250), Cor(1, 1, 1));
-		FuncoesExtra::DesenhaTexto(" KAMINO", Coord(540, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto("II:", Coord(500, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto(" KAMINO", Coord(540, 250), Cor(1, 1, 1));
 	}
 	if (numFase == 3) {
-		FuncoesExtra::DesenhaTexto("III:", Coord(500, 250), Cor(1, 1, 1));
-		FuncoesExtra::DesenhaTexto(" SALEUCAMI", Coord(540, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto("III:", Coord(500, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto(" SALEUCAMI", Coord(540, 250), Cor(1, 1, 1));
 	}
 	if (numFase == 4) {
-		FuncoesExtra::DesenhaTexto("IV:", Coord(500, 250), Cor(1, 1, 1));
-		FuncoesExtra::DesenhaTexto(" ALDERAAN", Coord(540, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto("IV:", Coord(500, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto(" ALDERAAN", Coord(540, 250), Cor(1, 1, 1));
 	}
 	if (numFase == 5) {
-		FuncoesExtra::DesenhaTexto("V:", Coord(500, 250), Cor(1, 1, 1));
-		FuncoesExtra::DesenhaTexto(" HOTH", Coord(540, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto("V:", Coord(500, 250), Cor(1, 1, 1));
+		Utilities::DesenhaTexto(" HOTH", Coord(540, 250), Cor(1, 1, 1));
 	}
 }

@@ -1,11 +1,11 @@
 src/AnimacaoPassouFase.o: ../src/AnimacaoPassouFase.cpp \
  ../header/AnimacaoPassouFase.h ../header/EfeitosVisuais.h \
- ../header/Estruturas.h ../header/FuncoesExtra.h
+ ../header/Utilities.h ../header/Estruturas.h
 
 ../header/AnimacaoPassouFase.h:
 
 ../header/EfeitosVisuais.h:
 
-../header/Estruturas.h:
+../header/Utilities.h:
 
-../header/FuncoesExtra.h:
+../header/Estruturas.h:

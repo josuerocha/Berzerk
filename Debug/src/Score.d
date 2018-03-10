@@ -1,8 +1,8 @@
-src/Score.o: ../src/Score.cpp ../header/Score.h ../header/FuncoesExtra.h \
+src/Score.o: ../src/Score.cpp ../header/Score.h ../header/Utilities.h \
  ../header/Estruturas.h
 
 ../header/Score.h:
 
-../header/FuncoesExtra.h:
+../header/Utilities.h:
 
 ../header/Estruturas.h:

@@ -1,16 +1,16 @@
-#include "FuncoesExtra.h"
+#include <Utilities.h>
 
 
-FuncoesExtra::FuncoesExtra()
+Utilities::Utilities()
 {
 }
 
 
-FuncoesExtra::~FuncoesExtra()
+Utilities::~Utilities()
 {
 }
 
-void FuncoesExtra::DesenhaTexto(char *string, Coord c,Cor cor)
+void Utilities::DesenhaTexto(char *string, Coord c,Cor cor)
 {
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(cor.r, cor.g, cor.b);
@@ -24,7 +24,7 @@ void FuncoesExtra::DesenhaTexto(char *string, Coord c,Cor cor)
 	glPopMatrix();
 }
 
-void FuncoesExtra::DesenhaTextoMouse(char *string, Coord mouse, Cor cor)
+void Utilities::DesenhaTextoMouse(char *string, Coord mouse, Cor cor)
 {
 	glColor3f(cor.r, cor.g, cor.b);
 	glPushMatrix();
@@ -37,7 +37,7 @@ void FuncoesExtra::DesenhaTextoMouse(char *string, Coord mouse, Cor cor)
 	glPopMatrix();
 }
 
-void FuncoesExtra::DesenhaInstrucoesBloco(char *string, Coord c)
+void Utilities::DesenhaInstrucoesBloco(char *string, Coord c)
 {
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(0.00f, 0.00f, 0.00f);
@@ -51,14 +51,14 @@ void FuncoesExtra::DesenhaInstrucoesBloco(char *string, Coord c)
 	glPopMatrix();
 }
 
-Coord FuncoesExtra::CalculaVetorUnitario(Coord i, Coord f) {
+Coord Utilities::CalculaVetorUnitario(Coord i, Coord f) {
 	Coord c = Coord(f.x - i.x, f.y - i.y);
 	float modulo = sqrt(pow(c.x, 2) + pow(c.y, 2));
 	c = Coord(c.x / modulo, c.y / modulo);
 	return c;
 }
 
-void FuncoesExtra::DrawCircle(Coord c, float r, int segmentos)
+void Utilities::DrawCircle(Coord c, float r, int segmentos)
 {	
 	glBegin(GL_POLYGON);
 	for (int i = 0; i < segmentos; i++)
@@ -74,13 +74,13 @@ void FuncoesExtra::DrawCircle(Coord c, float r, int segmentos)
 	glEnd();
 }
 
-std::string FuncoesExtra::to_string( int n ){
+std::string Utilities::to_string( int n ){
         std::ostringstream stm ;
         stm << n ;
         return stm.str() ;
 }
 
-bool FuncoesExtra::checkCollision(BoundingBox *quadrado1, BoundingBox *quadrado2) {
+bool Utilities::checkCollision(BoundingBox *quadrado1, BoundingBox *quadrado2) {
 	int esquerda1, direita1, cima1, baixo1;
 	int esquerda2, direita2, cima2, baixo2;
 	esquerda1 = quadrado1->x;

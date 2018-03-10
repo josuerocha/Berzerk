@@ -13,7 +13,7 @@ CPP_SRCS += \
 ../src/EfeitosVisuais.cpp \
 ../src/Enemy.cpp \
 ../src/Explosao.cpp \
-../src/FuncoesExtra.cpp \
+../src/Game.cpp \
 ../src/Level.cpp \
 ../src/MainMenu.cpp \
 ../src/Medkit.cpp \
@@ -22,7 +22,7 @@ CPP_SRCS += \
 ../src/Player.cpp \
 ../src/Projectile.cpp \
 ../src/Score.cpp \
-../src/Tela.cpp \
+../src/Utilities.cpp \
 ../src/main.cpp 
 
 OBJS += \
@@ -35,7 +35,7 @@ OBJS += \
 ./src/EfeitosVisuais.o \
 ./src/Enemy.o \
 ./src/Explosao.o \
-./src/FuncoesExtra.o \
+./src/Game.o \
 ./src/Level.o \
 ./src/MainMenu.o \
 ./src/Medkit.o \
@@ -44,7 +44,7 @@ OBJS += \
 ./src/Player.o \
 ./src/Projectile.o \
 ./src/Score.o \
-./src/Tela.o \
+./src/Utilities.o \
 ./src/main.o 
 
 CPP_DEPS += \
@@ -57,7 +57,7 @@ CPP_DEPS += \
 ./src/EfeitosVisuais.d \
 ./src/Enemy.d \
 ./src/Explosao.d \
-./src/FuncoesExtra.d \
+./src/Game.d \
 ./src/Level.d \
 ./src/MainMenu.d \
 ./src/Medkit.d \
@@ -66,7 +66,7 @@ CPP_DEPS += \
 ./src/Player.d \
 ./src/Projectile.d \
 ./src/Score.d \
-./src/Tela.d \
+./src/Utilities.d \
 ./src/main.d 
 
 

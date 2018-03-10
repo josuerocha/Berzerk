@@ -1,6 +1,6 @@
 src/Coletavel.o: ../src/Coletavel.cpp ../header/Coletavel.h \
- ../header/Player.h ../header/Personagem.h ../header/Estruturas.h \
- ../header/FuncoesExtra.h
+ ../header/Player.h ../header/Personagem.h ../header/Utilities.h \
+ ../header/Estruturas.h
 
 ../header/Coletavel.h:
 
@@ -8,6 +8,6 @@ src/Coletavel.o: ../src/Coletavel.cpp ../header/Coletavel.h \
 
 ../header/Personagem.h:
 
-../header/Estruturas.h:
+../header/Utilities.h:
 
-../header/FuncoesExtra.h:
+../header/Estruturas.h:
