@@ -101,7 +101,7 @@ void Tela::Display() {
 	}
 
 	if (passouDeFase && !animacaoMorte && !animacaoInicial.emAnimacao && !menu->emMenuPrincipal) {
-		efeitoPassouFase->Display(faseAtual + 2);
+		efeitoPassouFase->Display(faseAtual + 1);
 		if(!efeitoPassouFase->isActive){
 			faseAtual++;
 			visualEffects.clear();

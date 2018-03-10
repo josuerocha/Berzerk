@@ -10,7 +10,6 @@ CPP_SRCS += \
 ../src/AnimacaoMorte.cpp \
 ../src/AnimacaoPassouFase.cpp \
 ../src/Coletavel.cpp \
-../src/Colisao.cpp \
 ../src/EfeitosVisuais.cpp \
 ../src/Enemy.cpp \
 ../src/Explosao.cpp \
@@ -33,7 +32,6 @@ OBJS += \
 ./src/AnimacaoMorte.o \
 ./src/AnimacaoPassouFase.o \
 ./src/Coletavel.o \
-./src/Colisao.o \
 ./src/EfeitosVisuais.o \
 ./src/Enemy.o \
 ./src/Explosao.o \
@@ -56,7 +54,6 @@ CPP_DEPS += \
 ./src/AnimacaoMorte.d \
 ./src/AnimacaoPassouFase.d \
 ./src/Coletavel.d \
-./src/Colisao.d \
 ./src/EfeitosVisuais.d \
 ./src/Enemy.d \
 ./src/Explosao.d \
