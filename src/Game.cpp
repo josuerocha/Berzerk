@@ -484,7 +484,7 @@ void Game::moveEnemies() {
 					spriteParede = NULL;
 					if (!podeMover) { break; }
 				}
-				enemy->Move(&nova, podeMover);
+				//enemy->Move(&nova, podeMover);
 
 				delete spriteInimigo;
 				spriteInimigo = NULL;
