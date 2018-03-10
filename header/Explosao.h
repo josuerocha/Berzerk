@@ -1,13 +1,23 @@
 #pragma once
-#include "Estruturas.h"
+
+//STANDARD INCLUDES
 #include <vector>
 #include <GL/glut.h>
 #include <iostream>
-#include "EfeitosVisuais.h"
 #include <GL/freeglut.h>
 #include <string>
-class Explosao : public EfeitosVisuais
-{
+
+//CUSTOM INCLUDES
+#include "Estruturas.h"
+#include "EfeitosVisuais.h"
+
+//DEFINITIONS
+
+#define SPEED 0.7
+
+
+class Explosao : public EfeitosVisuais {
+
 public:
 	std::vector <Coord*> vetorPontos;
 	bool decrementa;

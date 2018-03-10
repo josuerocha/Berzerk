@@ -1,8 +1,6 @@
 #include "Explosao.h"
 using namespace std;
-Explosao::Explosao()
-{
-}
+
 
 Explosao::Explosao(Coord c, string tamanho)
 {
@@ -34,10 +32,10 @@ void Explosao::Display() {
 		glColor3f(1, 0, 0);
 		FuncoesExtra::DrawCircle(c, size, 5);
 		if(decrementa){
-			size -= 0.4;
+			size -= SPEED;
 		}
 		else {
-			size += 0.4;
+			size += SPEED;
 		}
 	if(size>= limite){
 		decrementa = true;
