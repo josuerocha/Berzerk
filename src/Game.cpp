@@ -405,7 +405,7 @@ void Game::MoveEnemyProjectiles() {
 }
 
 void Game::keyboardUp(unsigned char key, int x, int y) {
-	cout << "Tecla regular solta: " << char(key) << ". Mouse (" << x << ',' << y << ')' << endl;
+	//cout << "Regular key release: " << char(key) << ". Mouse (" << x << ',' << y << ')' << endl;
 	switch (key) {
 	case UP:
 		keyBuffer[0] = false;
@@ -465,31 +465,32 @@ void Game::DisplayEnemies() {
 }
 
 
-void Game::ChecaColisaoInimigosParedes() {
-	bool podeMover = true;
+void Game::moveEnemies() {
+
 	for(Enemy* enemy : level.vetorInimigos) {
 		if ((enemy->getIsActive())) {
-		Coord playerCenter = player.Centro();
-		Coord nova = enemy->FollowPlayer(&playerCenter);
-		BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, enemy->d.largura, enemy->d.altura);
+			Coord playerCenter = player.Centro();
+			Coord nova = enemy->FollowPlayer(&playerCenter);
 
-		for(Parede* parede : level.walls) {
-			BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
-			podeMover = !Utilities::checkCollision(spriteInimigo, spriteParede);
-			delete spriteParede;
-			spriteParede = NULL;
-			if (!podeMover) { break; }
-		}
+			if (enemy->tipo == 5){
+				enemy->Move(&nova, true);
+			} else {
+				BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, enemy->d.largura, enemy->d.altura);
+				bool podeMover = true;
+				for(Parede* parede : level.walls) {
+					BoundingBox *spriteParede = new BoundingBox(parede->c.x, parede->c.y, parede->d.largura, parede->d.altura);
+					podeMover = !Utilities::checkCollision(spriteInimigo, spriteParede);
+					delete spriteParede;
+					spriteParede = NULL;
+					if (!podeMover) { break; }
+				}
+				enemy->Move(&nova, podeMover);
 
-		if (enemy->tipo == 5){
-			enemy->Move(&nova, true);
-		}
-		else {
-			enemy->Move(&nova, podeMover);
-		}
+				delete spriteInimigo;
+				spriteInimigo = NULL;
+			}
 
-		delete spriteInimigo;
-		spriteInimigo = NULL;
+
 		}
 	}
 }
@@ -510,7 +511,7 @@ void Game::ChecarColisoes() {
 	ChecarColisoesProjeteisInimigos();
 	ChecarColisoesInimigos();
 	ChecaColisaoProjeteisParedes();
-	ChecaColisaoInimigosParedes();
+	moveEnemies();
 	ChecarColisoesColetaveis();
 }
 

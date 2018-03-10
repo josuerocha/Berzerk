@@ -81,7 +81,7 @@ public:
 	void MoveEnemyProjectiles();
 	void Initialize();
 	void AlteraTamanhoJanela(GLsizei w, GLsizei h);
-	void ChecaColisaoInimigosParedes();
+	void moveEnemies();
 	void ChecaColisaoInimigosParedesInimigos();
 	bool ChecarColisoesParedes(int variacaox,int variacaoy);
 	void ChecarColisoes();
