@@ -21,7 +21,7 @@
 #include "AnimacaoGameOver.h"
 #include "AnimacaoFinal.h"
 
-#define PROJECTILE_VELOCITY 3
+#define PROJECTILE_VELOCITY 5
 #define MAX_PROJECTILES 30
 #define MAX_ENEMIES_PER_SCREEN 10
 

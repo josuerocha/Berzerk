@@ -349,7 +349,6 @@ void Game::MoveFriendlyProjectiles() {
 		for (int i = 0; i < MAX_PROJECTILES; i++) {
 			if (friendlyProjectiles.size() < MAX_PROJECTILES) {
 				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::CalculaVetorUnitario(player.Centro(), mouse),Dimensao(5,5), 900, 10, PROJECTILE_VELOCITY, true,Cor(0,0,1)));
-				score.incShots(1);
 				break;
 			}
 			else if(!friendlyProjectiles[i]->isActive()){
@@ -360,7 +359,6 @@ void Game::MoveFriendlyProjectiles() {
 				friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY;
 				friendlyProjectiles[i]->active = true;
 				friendlyProjectiles[i]->d = Dimensao(5, 5);
-				score.incShots(1);
 				break;
 			}
 		}
@@ -401,6 +399,7 @@ void Game::MoveEnemyProjectiles() {
 		//Destruir projeteis distantes
 		if (projetil->isActive() && (projetil->c.x > window.width || projetil->c.x < 0 || projetil->c.y > window.height || projetil->c.y < 0)) {
 			projetil->Deactivate();
+			score.incShots(1);
 		}
 	}
 }
@@ -545,6 +544,7 @@ void Game::ChecarColisoesProjeteisAmigos() {
 						if (Utilities::checkCollision(spriteProjetil, spriteInimigo)) {
 							projetilAmigo->Deactivate();
 							inimigo->DecHP(projetilAmigo->dano);
+							score.incShots(1);
 							score.IncHits(1);
 							visualEffects.push_back(new Explosao(inimigo->Centro(), "pequena"));
 							if (!inimigo->getIsActive()) {
@@ -569,7 +569,7 @@ void Game::ChecarColisoesInimigos() {
 				visualEffects.push_back(new Explosao(player.Centro(), "grande"));
 				player.Kill();
 				enemy->Kill();
-				delete (&enemy);
+				delete (enemy);
 			}
 			delete spriteInimigo;
 			spriteInimigo = NULL;
@@ -629,6 +629,7 @@ void Game::ChecaColisaoProjeteisParedes() {
 				bool colisao = Utilities::checkCollision(spriteProjetil, spriteParede);
 				if (colisao == true) {
 					projetilAmigo->Deactivate();
+					score.incShots(1);
 					break;
 				}
 				delete spriteParede;
