@@ -268,10 +268,10 @@ void MainMenu::OpcaoMenu() {
 	DesenhaInstrucoesBloco("O:", Coord(142, 231));
 	DesenhaInstrucoes("Entra na tela de opcoes", Coord(180, 230));
 	DesenhaInstrucoesBloco("Teclas de Jogo",Coord( 427, 199));
-	Utilities::DesenhaTextoMouse("1",Coord( 178, 138),Cor(1,1,1));
-	Utilities::DesenhaTextoMouse("2",Coord( 202, 138), Cor(1, 1, 1));
-	Utilities::DesenhaTextoMouse("1",Coord( 238, 137), Cor(1, 1, 1));
-	Utilities::DesenhaTextoMouse("2", Coord(238, 112), Cor(1, 1, 1));
+	Utilities::drawTextAtMouse("1",Coord( 178, 138),Cor(1,1,1));
+	Utilities::drawTextAtMouse("2",Coord( 202, 138), Cor(1, 1, 1));
+	Utilities::drawTextAtMouse("1",Coord( 238, 137), Cor(1, 1, 1));
+	Utilities::drawTextAtMouse("2", Coord(238, 112), Cor(1, 1, 1));
 	DesenhaInstrucoes("Tiro 1",Coord( 262, 133));
 	DesenhaInstrucoes("Tiro 2",Coord( 262, 106));
 

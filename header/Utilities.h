@@ -17,11 +17,11 @@ class Utilities
 public:
 	Utilities();
 	~Utilities();
-	static void DesenhaTexto(char *string, Coord c, Cor cor);
-	static void DesenhaTextoMouse(char * string, Coord mouse, Cor cor);
-	static void DesenhaInstrucoesBloco(char * string, Coord c);
-	static Coord CalculaVetorUnitario(Coord i, Coord f);
-	static void DrawCircle(Coord c, float r, int segmentos);
+	static void drawText(char *string, Coord c, Cor cor);
+	static void drawTextAtMouse(char * string, Coord mouse, Cor cor);
+	static void drawInstructionBlock(char * string, Coord c);
+	static Coord calculateUnitVector(Coord *a, Coord *b);
+	static void drawCircle(Coord c, float r, int segmentos);
 	static std::string to_string( int n );
 	static bool checkCollision(BoundingBox *quadrado1, BoundingBox *quadrado2);
 };

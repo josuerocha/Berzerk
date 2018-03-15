@@ -31,7 +31,7 @@ void AnimacaoGameOver::Display() {
 	glEnd();
 	if (efeitoCont < 1400) { efeitoCont++; }
 	else { isActive = false; }
-	Utilities::DesenhaTexto("GAME OVER!", Coord(400, 300), Cor(1, 1, 1));
+	Utilities::drawText("GAME OVER!", Coord(400, 300), Cor(1, 1, 1));
 }
 
 void AnimacaoGameOver::Reset() {

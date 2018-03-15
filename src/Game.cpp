@@ -26,9 +26,7 @@ Game::Game(){
 void Game::Logica() {
 	if ((level.getQtdInimigos() <= 0) && (player.getHP() > 0)) {
 		passouDeFase = true;
-		cout<< "LEVEL UP" << endl;
-	}
-	else {
+	} else {
 		passouDeFase = false;
 	}
 
@@ -348,12 +346,12 @@ void Game::MoveFriendlyProjectiles() {
 	if (shoot == 1) {
 		for (int i = 0; i < MAX_PROJECTILES; i++) {
 			if (friendlyProjectiles.size() < MAX_PROJECTILES) {
-				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::CalculaVetorUnitario(player.Centro(), mouse),Dimensao(5,5), 900, 10, PROJECTILE_VELOCITY, true,Cor(0,0,1)));
+				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::calculateUnitVector(&player.c, &mouse),Dimensao(5,5), 900, 10, PROJECTILE_VELOCITY, true,Cor(0,0,1)));
 				break;
 			}
 			else if(!friendlyProjectiles[i]->isActive()){
 				friendlyProjectiles[i]->c = player.c;
-				friendlyProjectiles[i]->vetor = Utilities::CalculaVetorUnitario(player.Centro(), mouse);
+				friendlyProjectiles[i]->vetor = Utilities::calculateUnitVector(&player.c, &mouse);
 				friendlyProjectiles[i]->alcance = 900;
 				friendlyProjectiles[i]->dano = 10;
 				friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY;
@@ -366,13 +364,13 @@ void Game::MoveFriendlyProjectiles() {
 	if (shoot == 2 && (player.getTiros()>0)) {
 		for (int i = 0; i < MAX_PROJECTILES; i++) {
 			if (friendlyProjectiles.size() < MAX_PROJECTILES) {
-				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::CalculaVetorUnitario(player.Centro(), mouse), Dimensao(20, 20), 900, 50, PROJECTILE_VELOCITY, true, Cor(0, 0, 1)));
+				friendlyProjectiles.push_back(new Projectile(player.Centro(), Utilities::calculateUnitVector(&player.c, &mouse), Dimensao(20, 20), 900, 50, PROJECTILE_VELOCITY, true, Cor(0, 0, 1)));
 				score.incShots(1);
 				player.decTirosEspeciais();
 				break;
 			}
 			else if (!friendlyProjectiles[i]->isActive()) {
-				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = Utilities::CalculaVetorUnitario(player.Centro(), mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 50; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->active = true; friendlyProjectiles[i]->d = Dimensao(20, 20);
+				friendlyProjectiles[i]->c = player.c; friendlyProjectiles[i]->vetor = Utilities::calculateUnitVector(&player.c, &mouse); friendlyProjectiles[i]->alcance = 900; friendlyProjectiles[i]->dano = 50; friendlyProjectiles[i]->velocity = PROJECTILE_VELOCITY; friendlyProjectiles[i]->active = true; friendlyProjectiles[i]->d = Dimensao(20, 20);
 				score.incShots(1);
 				player.decTirosEspeciais();
 				break;
@@ -588,7 +586,7 @@ void Game::EnemiesShoot() {
 				for (int i = 0; i < MAX_PROJECTILES; i++) {
 					if (enemyProjectiles.size() < MAX_PROJECTILES) {
 						enemyProjectiles.push_back(new Projectile(enemy->Centro(),
-								Utilities::CalculaVetorUnitario(enemy->Centro(), player.Centro()),
+								Utilities::calculateUnitVector(&enemy->c, &player.c),
 								Dimensao(5, 5),
 								900,
 								10,
@@ -599,7 +597,7 @@ void Game::EnemiesShoot() {
 					}
 					else if (!enemyProjectiles[i]->isActive()) {
 						enemyProjectiles[i]->c = enemy->c;
-						enemyProjectiles[i]->vetor = Utilities::CalculaVetorUnitario(enemy->Centro(), player.Centro());
+						enemyProjectiles[i]->vetor = Utilities::calculateUnitVector(&enemy->c, &player.c);
 						enemyProjectiles[i]->alcance = 900;
 						enemyProjectiles[i]->dano = 10;
 						enemyProjectiles[i]->velocity = PROJECTILE_VELOCITY;

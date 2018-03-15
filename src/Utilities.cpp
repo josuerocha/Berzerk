@@ -10,7 +10,7 @@ Utilities::~Utilities()
 {
 }
 
-void Utilities::DesenhaTexto(char *string, Coord c,Cor cor)
+void Utilities::drawText(char *string, Coord c,Cor cor)
 {
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(cor.r, cor.g, cor.b);
@@ -24,7 +24,7 @@ void Utilities::DesenhaTexto(char *string, Coord c,Cor cor)
 	glPopMatrix();
 }
 
-void Utilities::DesenhaTextoMouse(char *string, Coord mouse, Cor cor)
+void Utilities::drawTextAtMouse(char *string, Coord mouse, Cor cor)
 {
 	glColor3f(cor.r, cor.g, cor.b);
 	glPushMatrix();
@@ -37,7 +37,7 @@ void Utilities::DesenhaTextoMouse(char *string, Coord mouse, Cor cor)
 	glPopMatrix();
 }
 
-void Utilities::DesenhaInstrucoesBloco(char *string, Coord c)
+void Utilities::drawInstructionBlock(char *string, Coord c)
 {
 	//glColor3f(0.0f, 0.0f, 0.0f);
 	glColor3f(0.00f, 0.00f, 0.00f);
@@ -51,17 +51,17 @@ void Utilities::DesenhaInstrucoesBloco(char *string, Coord c)
 	glPopMatrix();
 }
 
-Coord Utilities::CalculaVetorUnitario(Coord a, Coord b) {
+Coord Utilities::calculateUnitVector(Coord *a, Coord *b) {
 
-	Coord c = Coord(b.x - a.x, b.y - a.y);
+	Coord c = Coord(b->x - a->x, b->y - a->y);
 	double modulo = sqrt(pow(c.x, 2) + pow(c.y, 2));
-	c.x = c.x / modulo;
-	c.y = c.y / modulo;
+	c.x /= modulo;
+	c.y /= modulo;
 	return c;
 
 }
 
-void Utilities::DrawCircle(Coord c, float r, int segmentos)
+void Utilities::drawCircle(Coord c, float r, int segmentos)
 {	
 	glBegin(GL_POLYGON);
 	for (int i = 0; i < segmentos; i++){

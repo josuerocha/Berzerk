@@ -43,29 +43,29 @@ void Score::Display(int vidas) {
 	std::string pontuacaoString = Utilities::to_string(pontuacao);
 	char pontuacaoVetor[30];
 	strcpy(pontuacaoVetor, pontuacaoString.c_str());
-	Utilities::DesenhaTexto("SCORE: ",Coord(800,15),Cor(0,0,1));
-	Utilities::DesenhaTexto(pontuacaoVetor, Coord(950, 15), Cor(1, 1, 1));
+	Utilities::drawText("SCORE: ",Coord(800,15),Cor(0,0,1));
+	Utilities::drawText(pontuacaoVetor, Coord(950, 15), Cor(1, 1, 1));
 
 	std::ostringstream out;
 	out << std::setprecision(3) << accuracy * 100;
 	std::string accuracyString = out.str();
 	char accuracyChar[30];
 	strcpy(accuracyChar, accuracyString.c_str());
-	Utilities::DesenhaTexto("ACCURACY: ", Coord(490, 15), Cor(0, 0, 1));
-	Utilities::DesenhaTexto(accuracyChar, Coord(690, 15), Cor(1, 1, 1));
-	Utilities::DesenhaTexto("%", Coord(725, 15), Cor(1, 1, 1));
+	Utilities::drawText("ACCURACY: ", Coord(490, 15), Cor(0, 0, 1));
+	Utilities::drawText(accuracyChar, Coord(690, 15), Cor(1, 1, 1));
+	Utilities::drawText("%", Coord(725, 15), Cor(1, 1, 1));
 	glColor3f(1, 0, 0);
 	if (vidas == 3){
-	Utilities::DrawCircle(Coord(400,25),10,6);
-	Utilities::DrawCircle(Coord(430, 25), 10, 6);
-	Utilities::DrawCircle(Coord(460, 25), 10, 6);
+	Utilities::drawCircle(Coord(400,25),10,6);
+	Utilities::drawCircle(Coord(430, 25), 10, 6);
+	Utilities::drawCircle(Coord(460, 25), 10, 6);
 	}
 	else if (vidas == 2) {
-	Utilities::DrawCircle(Coord(400, 25), 10, 6);
-	Utilities::DrawCircle(Coord(430, 25), 10, 6);
+	Utilities::drawCircle(Coord(400, 25), 10, 6);
+	Utilities::drawCircle(Coord(430, 25), 10, 6);
 	}
 	else if (vidas == 1) {
-	Utilities::DrawCircle(Coord(400, 25), 10, 6);
+	Utilities::drawCircle(Coord(400, 25), 10, 6);
 	}
 }
 

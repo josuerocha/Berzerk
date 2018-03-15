@@ -48,7 +48,7 @@ void Player::Display() {
 		glVertex2f(c.x, c.y + d.altura);
 		glEnd();
 
-		Utilities::DesenhaTexto("RAVEN", Coord(30,14), Cor(0, 0, 1));
+		Utilities::drawText("RAVEN", Coord(30,14), Cor(0, 0, 1));
 
 		float healthPercentage = hp / hpOriginal;
 		if (healthPercentage > 1) {
