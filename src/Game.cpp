@@ -458,7 +458,7 @@ void Game::mouseClick(int button, int state, int x, int y) {
 
 void Game::DisplayEnemies() {
 	for(Enemy* enemy : level.vetorInimigos) {
-		enemy->Display();
+		enemy->display();
 	}
 }
 
@@ -468,10 +468,10 @@ void Game::moveEnemies() {
 	for(Enemy* enemy : level.vetorInimigos) {
 		if ((enemy->getIsActive())) {
 			Coord playerCenter = player.Centro();
-			Coord nova = enemy->FollowPlayer(&playerCenter);
+			Coord nova = enemy->followPlayer(&playerCenter);
 
 			if (enemy->tipo == 5){
-				enemy->Move(&nova, true);
+				enemy->move(&nova, true);
 			} else {
 				BoundingBox *spriteInimigo = new BoundingBox(nova.x, nova.y, enemy->d.largura, enemy->d.altura);
 				bool podeMover = true;
@@ -482,7 +482,7 @@ void Game::moveEnemies() {
 					spriteParede = NULL;
 					if (!podeMover) { break; }
 				}
-				enemy->Move(&nova, podeMover);
+				enemy->move(&nova, podeMover);
 
 				delete spriteInimigo;
 				spriteInimigo = NULL;
@@ -566,7 +566,7 @@ void Game::ChecarColisoesInimigos() {
 			if (Utilities::checkCollision(spriteJogador, spriteInimigo)) {
 				visualEffects.push_back(new Explosao(player.Centro(), "grande"));
 				player.Kill();
-				enemy->Kill();
+				enemy->kill();
 				delete (enemy);
 			}
 			delete spriteInimigo;
