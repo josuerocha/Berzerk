@@ -2,10 +2,10 @@
 
 Score::Score()
 {
-	int pontuacao = 0;
-	int accuracy = 1;
-	int numTiros = 0;
-	int hits = 0;
+	this->pontuacao = 0;
+	this->accuracy = 1;
+	this->numTiros = 0;
+	this->hits = 0;
 }
 
 
@@ -16,7 +16,6 @@ Score::~Score()
 void Score::incShots(int incTiros) {
 	this->numTiros += incTiros;
 	if (numTiros != 0) { this->accuracy = hits / numTiros; }
-	std::cout << "NUM TIROS " << this->numTiros << "\n";
 }
 
 void Score::DecTiros(int decTiros) {
@@ -34,7 +33,6 @@ void Score::DecPontuacao(int decPontuacao) {
 
 void Score::IncHits(int incHits) {
 	this->hits += incHits;
-	std::cout << "NUM HITS " << this->hits << "\n";
 	if (numTiros != 0) { this->accuracy = hits / numTiros;}
 }
 

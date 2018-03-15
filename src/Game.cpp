@@ -227,7 +227,7 @@ void Game::MovePlayer() {
 }
 
 void Game::keyboardDown(unsigned char key, int x, int y) {
-	cout << "Tecla regular pressionada: " << char(key) << ". Mouse (" << x << ',' << y << ')' << endl;
+	//cout << "Tecla regular pressionada: " << char(key) << ". Mouse (" << x << ',' << y << ')' << endl;
 
 	switch (key) {
 	case 'Q':
@@ -311,7 +311,7 @@ void Game::keyboardDown(unsigned char key, int x, int y) {
 		}
 		break;
 	}
-	cout << "POSICAO X: " << x << "POSICAO Y: " << y << endl;
+	//cout << "POSICAO X: " << x << "POSICAO Y: " << y << endl;
 }
 
 void Game::mouseMotion(int x, int y) {
@@ -333,7 +333,7 @@ void Game::mouseMotion(int x, int y) {
 		//get the world coordinates from the screen coordinates
 		gluUnProject(winX, winY, winZ, modelview, projection, viewport, &worldX, &worldY, &worldZ);
 		mouse = Coord(worldX, worldY);
-		cout << "Mouse moveu para (" << mouse.x << ',' << mouse.y << ')' << endl;
+		//cout << "Mouse moveu para (" << mouse.x << ',' << mouse.y << ')' << endl;
 	}
 }
 
@@ -447,7 +447,7 @@ void Game::mouseClick(int button, int state, int x, int y) {
 			menu->clickAtivo = true;
 			menu->mouse = mouse;
 		}
-		cout << "Mouse click: " << button << ". Posicao (" << mouse.x << ',' << mouse.y << ')' << endl;
+		//cout << "Mouse click: " << button << ". Posicao (" << mouse.x << ',' << mouse.y << ')' << endl;
 	}
 	else
 	{
