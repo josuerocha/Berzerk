@@ -11,6 +11,6 @@ public:
 	Coord c;
 	Cor cor;
 	EfeitosVisuais();
-	~EfeitosVisuais();
+	virtual ~EfeitosVisuais();
 	virtual void Display();
 };

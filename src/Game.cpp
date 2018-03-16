@@ -23,14 +23,7 @@ Game::Game(){
 	cout<<"LEFT CONSTRUCTOR" << endl;
 }
 
-void Game::Logica() {
-	if ((level.getQtdInimigos() <= 0) && (player.getHP() > 0)) {
-		passouDeFase = true;
-	} else {
-		passouDeFase = false;
-	}
 
-}
 
 Game::~Game(){
 
@@ -61,7 +54,14 @@ void Game::AlteraTamanhoJanela(GLsizei w, GLsizei h){
 }
 
 void Game::Display() {
-	Logica();
+
+	//CHECK IF LEVEL WAS OVERCOME
+	if ((level.getQtdInimigos() <= 0) && (player.getHP() > 0)) {
+			passouDeFase = true;
+	} else {
+			passouDeFase = false;
+	}
+
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -167,8 +167,7 @@ void Game::Display() {
 void Game::DisplayCharacters() {
 	DisplayEnemies();
 	player.Display();
-	DisplayProjectiles();
-	DisplayEnemyProjectiles();
+	displayProjectiles();
 	DisplayVisualEfects();
 	score.Display(player.getVidas());
 	DisplayColetaveis();
@@ -184,22 +183,23 @@ void Game::setWindowValues() {
 	window.z_far = 100.0f;
 }
 
-void Game::DisplayProjectiles() {
+void Game::displayProjectiles() {
 
+	//FRIENDLY PROJECTILES
 	for(Projectile* p : friendlyProjectiles) {
 		if (p->isActive()) {
 			p->Display();
 		}
 	}
-}
 
-void Game::DisplayEnemyProjectiles() {
+	//ENEMY PROJECTILES
 	for( Projectile* p : enemyProjectiles) {
-		if (p->isActive()) {
-			p->Display();
-		}
+			if (p->isActive()) {
+				p->Display();
+			}
 	}
 }
+
 
 void Game::CheckMapBoundaries(){
 	if (player.getC().x > window.width) {
@@ -337,12 +337,10 @@ void Game::mouseMotion(int x, int y) {
 	}
 }
 
-void Game::MoveProjectiles() {
-	MoveFriendlyProjectiles();
-	MoveEnemyProjectiles();
-}
 
-void Game::MoveFriendlyProjectiles() {
+void Game::moveProjectiles() {
+
+	//FRIENDLY PROJECTILES
 	if (shoot == 1) {
 		for (int i = 0; i < MAX_PROJECTILES; i++) {
 			if (friendlyProjectiles.size() < MAX_PROJECTILES) {
@@ -377,6 +375,7 @@ void Game::MoveFriendlyProjectiles() {
 			}
 		}
 	}
+
 	shoot = 0;
 	for( Projectile*  p : friendlyProjectiles) {
 		if (p->isActive()) {
@@ -387,9 +386,8 @@ void Game::MoveFriendlyProjectiles() {
 			p->Deactivate();
 		}
 	}
-}
 
-void Game::MoveEnemyProjectiles() {
+	//MOVE ENEMY PROJECTILES
 	for(Projectile* projetil : enemyProjectiles) {
 		if (projetil->isActive()) {
 			projetil->c = Coord(projetil->c.x + (projetil->vetor.x * projetil->velocity),projetil->c.y + (projetil->vetor.y * projetil->velocity));

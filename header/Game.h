@@ -75,10 +75,7 @@ public:
 	Game();
 	~Game();
 
-	void Logica();
-	void MoveProjectiles();
-	void MoveFriendlyProjectiles();
-	void MoveEnemyProjectiles();
+	void moveProjectiles();
 	void Initialize();
 	void AlteraTamanhoJanela(GLsizei w, GLsizei h);
 	void moveEnemies();
@@ -96,8 +93,7 @@ public:
 	void Display();
 	void DisplayCharacters();
 	void setWindowValues();
-	void DisplayProjectiles();
-	void DisplayEnemyProjectiles();
+	void displayProjectiles();
 	void CheckMapBoundaries();
 	void MovePlayer();
 	void keyboardDown(unsigned char key, int x, int y);
